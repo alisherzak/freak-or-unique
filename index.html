@@ -875,86 +875,32 @@ footer{
   .section-head__kicker{ text-align:left; justify-self:start; }
 }
 
-/* default — backdrop images and mobile-only links hidden on desktop */
+/* default — backdrop images hidden everywhere (cinematic experiment retired) */
 .bg-img{ display:none; }
 .find__maps{ display:none; }
 
 /* ════════════════════════════════════════════════════════════
-   CINEMATIC MOBILE — every section opens with a full-bleed
-   photo "poster", text minimal, scroll past the photo
-   into the substance of the section.
-   Desktop above 760px stays untouched.
+   MOBILE — same editorial DNA as desktop, properly sized.
+   Section heads keep their № number + title + kicker.
+   Layouts stack 1-column. Photos sized intentionally per section.
+   Desktop (>760px) is untouched.
    ════════════════════════════════════════════════════════════ */
 @media (max-width: 760px){
 
-  /* ── strip ALL editorial chrome on mobile ── */
-  .hero__ticks, .hero__rail, .hero__star, .hero__corner, .hero__imgcap,
-  .hero__eyebrow, .hero__meta, .hero__sub,
-  .section-head__num, .section-head__kicker,
-  .manifesto__image,
-  .booking__copy, .booking__accent,
-  .hours, .parking,
-  .gallery__tile .cap,
-  .foot__brand p, .strip__tile .cap{ display:none !important; }
+  /* ── desktop scaffolding that has no place on a phone ── */
+  .hero__ticks, .hero__rail, .hero__star, .hero__corner,
+  .strip__tile .cap, .gallery__tile .cap{ display:none; }
 
-  /* ── kill desktop scaffolding affordances ── */
-  section{ padding:0; margin:0; max-width:none; }
-  .section-head{ margin:0; padding:0; border-bottom:0; display:block; }
+  /* ── tap-delay kill ── */
+  a, button{ touch-action:manipulation; }
 
-  /* ════════ HERO — lock-screen wallpaper, almost no text ════════ */
-  .hero{
-    position:relative;
-    min-height:100dvh;
-    padding:0; margin:0;
-    max-width:none;
-    display:block;
-    overflow:hidden;
-  }
-  .hero__image{
-    position:absolute; inset:0;
-    grid-column:auto; grid-row:auto;
-    z-index:0; display:block;
-  }
-  .hero__image img{
-    width:100%; height:100%;
-    max-height:none;
-    object-fit:cover;
-    object-position:50% 22%;
-    filter:contrast(1.05) saturate(0.88) brightness(0.78);
-  }
-  .hero::before{
-    content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
-    background:
-      linear-gradient(to bottom, rgba(10,10,10,.65) 0%, rgba(10,10,10,0) 22%),
-      linear-gradient(to top,    rgba(10,10,10,.92) 0%, rgba(10,10,10,.35) 36%, rgba(10,10,10,0) 65%);
-  }
-  .hero__type{
-    position:absolute;
-    left:0; right:0;
-    bottom:calc(88px + env(safe-area-inset-bottom));
-    padding:0 var(--pad);
-    grid-column:auto; grid-row:auto;
-    z-index:2;
-    align-self:auto;
-    text-align:center;
-  }
-  .hero__headline{
-    font-size:clamp(64px, 18vw, 110px);
-    line-height:0.88;
-    letter-spacing:-0.045em;
-    color:var(--bone);
-    text-shadow:0 2px 28px rgba(0,0,0,0.55);
-  }
-  .hero__headline .line--or{ justify-content:center; padding-left:0; gap:0.32em; }
-  .hero__headline .line--or::before{ display:none; }
-
-  /* ════════ NAV — slimmer, safe-area ════════ */
-  header.nav{ padding-top:env(safe-area-inset-top); background:transparent; border-bottom:0; }
-  .nav.scrolled{ background:rgba(10,10,10,0.78); border-bottom:1px solid var(--rule); }
-  .nav__inner{ padding:14px var(--pad); gap:12px; }
+  /* ════════ NAV ════════ */
+  header.nav{ padding-top:env(safe-area-inset-top); }
+  .nav.scrolled{ background:rgba(10,10,10,0.82); }
+  .nav__inner{ padding:12px var(--pad); gap:12px; }
   .wordmark{ font-size:16px; }
   .nav__burger{ display:flex; order:3; width:44px; height:44px; }
-  .btn-book{ padding:11px 18px; font-size:11px; min-height:44px; display:inline-flex; align-items:center; }
+  .btn-book{ padding:10px 16px; font-size:11px; min-height:44px; display:inline-flex; align-items:center; }
   .nav__links{
     display:none;
     position:absolute; top:100%; left:0; right:0;
@@ -963,8 +909,8 @@ footer{
     -webkit-backdrop-filter:blur(20px);
     border-bottom:1px solid var(--rule);
     flex-direction:column; align-items:stretch;
-    padding:16px var(--pad) calc(24px + env(safe-area-inset-bottom));
-    gap:4px;
+    padding:8px var(--pad) calc(24px + env(safe-area-inset-bottom));
+    gap:0;
   }
   .nav__links a{
     padding:18px 4px;
@@ -974,232 +920,170 @@ footer{
   .nav__links li:last-child a{ border-bottom:0; }
   .nav.open .nav__links{ display:flex; }
 
-  /* ════════ CINEMATIC SECTION-HEAD PANELS ════════ */
-  /* Story sections open with a full-bleed photo poster.
-     Gallery + Flash are browse-first — they get a tight inline header instead. */
-  main > section:not(.hero):not(#gallery) > .section-head{
-    position:relative;
-    min-height:44dvh;
-    margin:0; padding:0;
-    border-bottom:0;
-    display:flex; align-items:flex-end; justify-content:center;
-    overflow:hidden;
-    isolation:isolate;
-  }
-  main > section:not(.hero):not(#gallery) > .section-head .bg-img{
-    display:block;
-    position:absolute; inset:0;
-    width:100%; height:100%;
-    object-fit:cover;
-    object-position:center 30%;
-    z-index:-2;
-    filter:contrast(1.05) saturate(0.82) brightness(0.72);
-  }
-  main > section:not(.hero):not(#gallery) > .section-head::before{
-    content:""; position:absolute; inset:0; z-index:-1;
-    background:
-      linear-gradient(to top, rgba(10,10,10,.95) 0%, rgba(10,10,10,.45) 32%, rgba(10,10,10,0) 62%),
-      linear-gradient(to bottom, rgba(10,10,10,.4) 0%, rgba(10,10,10,0) 30%);
-  }
-  main > section:not(.hero):not(#gallery) > .section-head .section-head__title{
-    color:var(--bone);
-    font-size:clamp(40px, 11vw, 72px);
-    line-height:0.94;
-    letter-spacing:-0.035em;
-    text-align:center;
-    text-shadow:0 2px 22px rgba(0,0,0,0.55);
-    padding:0 var(--pad) 32px;
-    margin:0;
-  }
-  main > section:not(.hero):not(#gallery) > .section-head .section-head__title .or{ font-size:0.94em; }
-  #book .section-head__title br{ display:none; }
-  #book .section-head__title{ font-size:clamp(34px, 9.5vw, 60px); }
-
-  /* ── browse sections: tight inline header, no poster ── */
-  #gallery > .section-head,
-  .flash-section > section > .section-head{
-    min-height:0;
-    margin:0;
-    padding:56px var(--pad) 18px;
-    display:block;
-    border-bottom:0;
-    text-align:left;
-    background:var(--ink);
-  }
-  #gallery > .section-head .bg-img,
-  .flash-section > section > .section-head .bg-img{ display:none; }
-  #gallery > .section-head .section-head__title,
-  .flash-section > section > .section-head .section-head__title{
-    color:var(--bone);
-    font-size:clamp(36px, 9vw, 56px);
-    line-height:0.95;
-    letter-spacing:-0.035em;
-    text-shadow:none;
-    padding:0;
-    margin:0;
-    text-align:left;
-  }
-
-  /* drop the featured strip (duplicates hero + gallery) */
-  #featured{ display:none; }
-
-  /* ════════ MANIFESTO — single big quote ════════ */
-  .manifesto{
-    grid-template-columns:1fr;
-    padding:64px var(--pad) 72px;
-    gap:0;
-  }
-  .manifesto__text{
-    font-size:clamp(28px, 7.5vw, 44px);
-    line-height:1.15;
-    text-align:left;
-    max-width:none;
-  }
-
-  /* ════════ ARTISTS — clean list under photo poster ════════ */
-  .artists{
-    grid-template-columns:1fr;
-    gap:0;
-    padding:8px var(--pad) 64px;
-  }
-  .artist{
-    flex-direction:row; align-items:center;
-    gap:18px;
-    min-height:72px;
-    padding:22px 0;
+  /* ════════ SECTION RHYTHM ════════ */
+  section{ padding:56px var(--pad); }
+  .section-head{
+    display:flex; flex-direction:column;
+    gap:14px;
+    margin-bottom:32px;
+    padding-bottom:24px;
     border-bottom:1px solid var(--rule);
+    align-items:flex-start;
   }
-  .artist:last-child{ border-bottom:0; }
-  .artist__portrait{ display:none; }
-  .artist__name{ font-size:26px; margin:0; flex:0 0 auto; min-width:88px; }
-  .artist__style{
-    flex:1;
-    font-size:10px;
-    letter-spacing:0.22em;
-    text-transform:uppercase;
-    color:var(--bone-faint);
-    margin:0;
+  .section-head__num{ font-size:12px; letter-spacing:0.05em; }
+  .section-head__title{
+    font-size:clamp(40px, 10vw, 64px);
+    line-height:0.96;
+    letter-spacing:-0.03em;
   }
-  .artist__ig{
-    border-top:0; padding-top:0; margin-top:0;
-    flex:0 0 auto;
-    min-width:44px; min-height:44px;
-    justify-content:flex-end; gap:6px;
-  }
-  .artist__ig span:first-child{ display:none; }
-  .artist__ig .arrow{ font-size:20px; }
+  .section-head__kicker{ text-align:left; max-width:none; }
 
-  /* ════════ GALLERY — title → chips → grid, tight ════════ */
-  #gallery{ padding:0; }
-  #gallery > .filters{
-    margin:0;
-    padding:8px var(--pad) 12px;
-    flex-wrap:nowrap; overflow-x:auto;
+  /* ════════ HERO — stacked text + photo below (editorial, not wallpaper) ════════ */
+  .hero{
+    display:flex; flex-direction:column;
+    min-height:auto;
+    padding:96px var(--pad) 48px;
+    gap:36px;
+    grid-template-columns:none; grid-template-rows:none;
+    align-items:stretch;
+    max-width:var(--maxw);
+  }
+  .hero__type{ grid-column:auto; grid-row:auto; align-self:auto; }
+  .hero__eyebrow{ margin-bottom:20px; gap:10px; flex-wrap:wrap; }
+  .hero__eyebrow .rule{ flex:0 0 32px; }
+  .hero__headline{
+    font-size:clamp(56px, 16vw, 92px);
+    line-height:0.9;
+    letter-spacing:-0.04em;
+  }
+  .hero__headline .line--or::before{ width:clamp(28px, 8vw, 52px); }
+  .hero__sub{
+    margin:24px 0 14px;
+    font-size:17px;
+    line-height:1.4;
+    max-width:32ch;
+  }
+  .hero__meta{ gap:8px 14px; font-size:11px; }
+  .hero__image{
+    grid-column:auto; grid-row:auto;
+    align-self:stretch;
+    justify-content:stretch;
+    margin:0 calc(var(--pad) * -1);
+  }
+  .hero__image img{
+    width:100%;
+    aspect-ratio:4/5;
+    max-height:none;
+    object-fit:cover;
+    object-position:50% 22%;
+  }
+  .hero__imgcap{
+    position:relative;
+    top:auto; left:auto;
+    margin:14px var(--pad) 0;
+    color:var(--bone-dim);
+  }
+
+  /* ════════ MANIFESTO — quote + small inset image, stacked ════════ */
+  .manifesto{ grid-template-columns:1fr; gap:28px; }
+  .manifesto__text{
+    font-size:clamp(26px, 6.6vw, 38px);
+    line-height:1.18;
+    letter-spacing:-0.015em;
+  }
+  .manifesto__image{ transform:none; max-width:62%; }
+  .manifesto__image img{ aspect-ratio:3/4; }
+
+  /* ════════ FEATURED STRIP — 2-col compact grid ════════ */
+  .strip{ grid-template-columns:repeat(2, 1fr); gap:10px; }
+  .strip__tile img{ aspect-ratio:3/4 !important; margin-top:0 !important; }
+
+  /* ════════ ARTISTS — 1-column card stack ════════ */
+  .artists{ grid-template-columns:1fr; gap:24px; }
+  .artist{ flex-direction:column; align-items:stretch; gap:14px; }
+  .artist__portrait{ aspect-ratio:4/3; }
+  .artist__portrait::before{ inset:14px; }
+  .artist__name{ font-size:30px; }
+  .artist__style{ font-size:13px; line-height:1.4; }
+  .artist__ig{ padding-top:14px; min-height:44px; }
+
+  /* ════════ GALLERY — chips above, 2-col masonry ════════ */
+  .filters{
+    flex-wrap:nowrap;
+    overflow-x:auto;
     scrollbar-width:none;
     -webkit-overflow-scrolling:touch;
+    margin:-8px calc(var(--pad) * -1) 24px;
+    padding:8px var(--pad) 12px;
     gap:8px;
   }
-  #gallery > .filters::-webkit-scrollbar{ display:none; }
-  .chip{
-    flex:0 0 auto;
-    padding:10px 18px;
-    font-size:11px;
-    min-height:40px;
-    border-radius:999px;
-  }
-  #gallery > .gallery{
-    column-count:2; column-gap:6px;
-    padding:0 6px 56px;
-  }
-  .gallery__tile{ margin-bottom:6px; }
+  .filters::-webkit-scrollbar{ display:none; }
+  .chip{ flex:0 0 auto; padding:10px 16px; font-size:11px; min-height:40px; }
+  .gallery{ column-count:2; column-gap:8px; }
+  .gallery__tile{ margin-bottom:8px; }
 
-  /* ════════ FLASH — grid below poster ════════ */
-  .flash-section{ background:#070707; }
-  .flash-section > section{ padding:0; }
-  .flash{
-    grid-template-columns:repeat(2, 1fr);
-    gap:32px 12px;
-    padding:48px var(--pad) 72px;
-  }
+  /* ════════ FLASH — 2-col tiles ════════ */
+  .flash{ grid-template-columns:repeat(2, 1fr); gap:28px 12px; }
   .flash__label{ font-size:16px; line-height:1.15; }
   .flash__price{ font-size:18px; }
   .flash__claim{ font-size:10px; padding:10px 0 0; }
 
-  /* ════════ BOOKING — only the 3 CTAs, no body copy ════════ */
-  #book .booking{
-    display:block;
-    padding:48px var(--pad) 64px;
+  /* ════════ BOOKING — copy + 3 CTAs stacked ════════ */
+  .booking{ grid-template-columns:1fr; gap:32px; }
+  .booking__copy{
+    font-size:clamp(20px, 5vw, 26px);
+    line-height:1.32;
+    max-width:none;
   }
-  .booking__ctas{
-    display:flex; flex-direction:column;
-    gap:12px;
-  }
-  .cta{
-    padding:22px 22px;
-    min-height:72px;
-    background:#141311;
-    border:1px solid var(--rule);
-  }
-  .cta__label{ font-size:20px; }
+  .booking__ctas{ display:flex; flex-direction:column; gap:12px; }
+  .cta{ padding:20px 22px; min-height:68px; }
+  .cta__label{ font-size:18px; }
   .cta__sub{ font-size:10px; letter-spacing:0.22em; }
-  .cta__arrow{ font-size:28px; }
+  .cta__arrow{ font-size:26px; }
+  .booking__accent{ grid-template-columns:1fr; gap:18px; margin-top:36px; padding-top:28px; }
+  .booking__accent img{ width:140px; }
+  .booking__accent p{ font-size:17px; }
 
-  /* ════════ AFTERCARE — accordion under poster ════════ */
-  #aftercare > .accordion{
-    padding:8px var(--pad) 64px;
-    border-top:0;
-  }
+  /* ════════ AFTERCARE ════════ */
   .acc__btn{ padding:22px 0; font-size:21px; gap:14px; }
   .acc__bodyinner{ padding:0 0 28px 0; font-size:15px; line-height:1.55; }
 
-  /* ════════ FIND US — address + map only ════════ */
-  .find{
-    grid-template-columns:1fr;
-    gap:24px;
-    padding:48px var(--pad) 72px;
-  }
-  .map{ aspect-ratio:16/10; order:2; }
-  .find__info{ gap:18px; order:1; align-items:flex-start; }
-  .find__addr{ font-size:clamp(24px, 6.5vw, 34px); line-height:1.15; margin:0; }
-
-  /* "Open in Maps" link replaces the missing hours table on mobile */
+  /* ════════ FIND US — map + info stacked ════════ */
+  .find{ grid-template-columns:1fr; gap:28px; }
+  .map{ aspect-ratio:16/10; }
+  .find__addr{ font-size:clamp(22px, 5.6vw, 30px); line-height:1.2; }
+  .hours td{ padding:14px 0; font-size:13px; }
   .find__maps{
     display:inline-flex; align-items:center;
     font-size:11px;
     letter-spacing:0.22em;
     text-transform:uppercase;
     color:var(--red);
-    padding:14px 0;
     min-height:44px;
-    border-bottom:1px solid var(--rule);
+    margin-top:-8px;
   }
   .find__maps:hover{ color:var(--bone); }
 
   /* ════════ FOOTER ════════ */
-  footer{ padding:48px var(--pad) calc(36px + env(safe-area-inset-bottom)); }
-  .foot{
-    grid-template-columns:1fr; gap:24px;
-    text-align:center;
-    padding-bottom:32px;
-  }
-  .foot__contact{ align-items:center; text-align:center; font-size:13px; }
-  .foot__brand{ display:flex; flex-direction:column; align-items:center; }
-  .foot__brand .wordmark{ font-size:30px; justify-content:center; }
-  .foot__bottom{ flex-direction:column; gap:8px; text-align:center; font-size:10px; }
-
-  /* zero out tap delays */
-  a, button{ touch-action:manipulation; }
+  footer{ padding:48px var(--pad) calc(32px + env(safe-area-inset-bottom)); }
+  .foot{ grid-template-columns:1fr; gap:32px; text-align:left; padding-bottom:32px; }
+  .foot__contact{ align-items:flex-start; text-align:left; gap:10px; font-size:13px; }
+  .foot__brand .wordmark{ font-size:32px; }
+  .foot__brand p{ font-size:16px; max-width:32ch; }
+  .foot__bottom{ flex-direction:column; gap:8px; align-items:flex-start; text-align:left; font-size:10px; }
 }
 
 /* ── tiny phones: tighten further ── */
 @media (max-width: 420px){
-  .hero__headline{ font-size:clamp(56px, 17vw, 96px); }
-  main > section:not(.hero):not(#gallery) > .section-head .section-head__title{
-    font-size:clamp(34px, 10vw, 60px);
-    padding-bottom:28px;
-  }
-  #gallery > .gallery{ column-count:2; column-gap:4px; padding:0 4px 56px; }
-  .gallery__tile{ margin-bottom:4px; }
+  .hero{ padding:88px var(--pad) 40px; gap:28px; }
+  .hero__headline{ font-size:clamp(48px, 15vw, 76px); }
+  .section-head__title{ font-size:clamp(34px, 9vw, 52px); }
+  section{ padding:48px var(--pad); }
+  .strip{ grid-template-columns:1fr; }
+  .gallery{ column-count:2; column-gap:6px; }
+  .gallery__tile{ margin-bottom:6px; }
+  .flash{ grid-template-columns:1fr; gap:28px; }
+  .flash__img{ aspect-ratio:4/5; }
 }
 
 /* ── reduced-motion: kill grain + transitions ── */
