@@ -18,8 +18,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,800;0,900;1,400;1,700;1,900&family=Inter:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,800;0,900;1,400;1,700;1,900&family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,800;0,900;1,400;1,700;1,900&family=Inter:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,800;0,900;1,400;1,700;1,900&family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
 
 <style>
 /* ───────── tokens ───────── */
@@ -881,22 +881,28 @@ footer{
 .hero__overlay{ display:none; }
 
 /* ════════════════════════════════════════════════════════════
-   MOBILE — unified type scale, clear section breaks, no Playfair.
-   Scale: 10 · 12 · 13 · 16 · 20 · 28 · 40 · 56 · 72
-   Serif: Cormorant Garamond (replaces Playfair on phone)
-   Body-level quotes: Inter sans
-   Each section opens with a 4px red bar + big red italic chapter number.
-   Desktop (>760px) untouched.
+   MOBILE — quieter, sized-down cousin of the desktop.
+   SAME fonts as desktop (Playfair display, Inter body).
+   SAME palette (#0A0A0A · #F2EFE9 · #C9342B).
+   Just tightened for phones, no new visual ideas.
+
+   Scale (mobile, fixed):
+     10  micro caps
+     12  small body
+     13  body
+     14  body
+     16  body large
+     20  subtitle
+     28  small heading
+     40  title
+     56  hero wordmark
+
+   Spacing (mobile, fixed):
+     16 / 24 / 32 / 48 / 64 / 80
    ════════════════════════════════════════════════════════════ */
 @media (max-width: 760px){
 
-  /* ── swap the brand serif on phone — finer, more refined ── */
-  :root{
-    --serif: 'Cormorant Garamond', Georgia, serif;
-    --italic: 'Cormorant Garamond', Georgia, serif;
-  }
-
-  /* ── hidden on mobile ── */
+  /* hidden on phone */
   .hero__ticks, .hero__rail, .hero__star, .hero__corner,
   .strip__tile .cap, .gallery__tile .cap,
   .artist__style{ display:none !important; }
@@ -904,12 +910,12 @@ footer{
   a, button{ touch-action:manipulation; }
 
   /* ════════ NAV ════════ */
-  header.nav{ padding-top:env(safe-area-inset-top); }
-  .nav.scrolled{ background:rgba(10,10,10,0.82); }
-  .nav__inner{ padding:12px var(--pad); gap:12px; }
-  .wordmark{ font-size:16px; }
+  header.nav{ padding-top:env(safe-area-inset-top); background:transparent; border-bottom:0; }
+  .nav.scrolled{ background:rgba(10,10,10,0.85); border-bottom:1px solid var(--rule); }
+  .nav__inner{ padding:14px var(--pad); gap:12px; }
+  .wordmark{ font-size:15px; }
   .nav__burger{ display:flex; order:3; width:44px; height:44px; }
-  .btn-book{ padding:10px 16px; font-size:12px; min-height:44px; display:inline-flex; align-items:center; }
+  .btn-book{ padding:10px 16px; font-size:11px; min-height:44px; display:inline-flex; align-items:center; }
   .nav__links{
     display:none;
     position:absolute; top:100%; left:0; right:0;
@@ -921,298 +927,187 @@ footer{
     padding:8px var(--pad) calc(24px + env(safe-area-inset-bottom));
     gap:0;
   }
-  .nav__links a{ padding:18px 4px; font-size:13px; border-bottom:1px solid var(--rule); }
+  .nav__links a{ padding:18px 4px; font-size:14px; border-bottom:1px solid var(--rule); }
   .nav__links li:last-child a{ border-bottom:0; }
   .nav.open .nav__links{ display:flex; }
 
-  /* ════════ SECTION BREAKS — chunky red bar + auto-numbered chapter mark ════════ */
-  main{ counter-reset: section; }
-  main section{ counter-increment: section; }
-
-  section:not(.hero){
-    border-top:4px solid var(--red);
-    padding:48px var(--pad) 56px;
-  }
-  /* flash section sits inside a wrapper — apply break to the inner section */
-  .flash-section{ background:#070707; }
-
-  /* hero is its own thing — no break above */
-  .hero{ border-top:0; }
-
-  /* ════════ SECTION HEADS ════════ */
-  .section-head{
-    display:flex; flex-direction:column;
-    gap:8px;
-    margin-bottom:28px;
-    padding-bottom:20px;
-    border-bottom:1px solid var(--rule);
-    align-items:flex-start;
-  }
-  /* auto-numbered chapter marker — big red italic */
-  .section-head::before{
-    content: counter(section, decimal-leading-zero);
-    display:block;
-    font-family:'Cormorant Garamond', Georgia, serif;
-    font-style:italic;
-    font-weight:500;
-    color:var(--red);
-    font-size:40px;
-    line-height:1;
-    margin-bottom:4px;
-    letter-spacing:-0.01em;
-  }
-  /* hide the desktop "№ 02 — Manifesto" chip — counter replaces it */
-  .section-head__num{ display:none; }
-  .section-head__title{
-    font-family:'Cormorant Garamond', Georgia, serif;
-    font-weight:500;
-    font-size:56px;
-    line-height:0.94;
-    letter-spacing:-0.025em;
-    color:var(--bone);
-    margin:0;
-  }
-  .section-head__title .or{
-    font-family:'Cormorant Garamond', Georgia, serif;
-    font-weight:500;
-    font-style:italic;
-    color:var(--red);
-    font-size:0.94em;
-  }
-  .section-head__kicker{
-    text-align:left;
-    font-size:13px;
-    color:var(--bone-dim);
-    max-width:none;
-    margin:6px 0 0;
-  }
-
-  /* ════════ HERO — aesthetic wallpaper, film-treated print ════════ */
+  /* ════════ HERO ════════
+     Full-viewport photo. All text overlaid on the lower portion,
+     anchored to the bottom with a strong gradient scrim for legibility.
+  */
   .hero{
-    display:flex; flex-direction:column;
-    min-height:auto;
-    padding:80px 0 44px;
-    gap:0;
-    grid-template-columns:none; grid-template-rows:none;
-    align-items:stretch;
-    max-width:var(--maxw);
-  }
-
-  /* photo first — full-bleed, treated like a film print */
-  .hero__image{
-    order:-1;
     position:relative;
     display:block;
-    grid-column:auto; grid-row:auto;
-    align-self:stretch;
-    justify-content:flex-start;
-    margin:0 0 28px;
+    min-height:100dvh;
+    padding:0; margin:0;
+    max-width:none;
     overflow:hidden;
-    isolation:isolate;
+    grid-template-columns:none; grid-template-rows:none;
+  }
+
+  .hero__image{
+    position:absolute; inset:0;
+    grid-column:auto; grid-row:auto;
+    margin:0;
+    display:block;
+    z-index:0;
   }
   .hero__image img{
-    width:100%;
-    aspect-ratio:3/4;
+    width:100%; height:100%;
     max-height:none;
+    aspect-ratio:auto;
     object-fit:cover;
-    object-position:50% 22%;
-    /* film print look */
-    filter:
-      contrast(1.16)
-      saturate(0.72)
-      brightness(0.86);
+    object-position:50% 25%;
+    filter:contrast(1.08) saturate(0.86) brightness(0.86);
     display:block;
   }
-  /* duotone wash — warm red into deep shadow */
-  .hero__image::before{
-    content:"";
-    position:absolute; inset:0;
-    z-index:1;
-    pointer-events:none;
-    background:
-      linear-gradient(180deg,
-        rgba(201,52,43,0.10) 0%,
-        rgba(201,52,43,0.04) 30%,
-        rgba(10,10,10,0)     55%,
-        rgba(10,10,10,0.45) 100%);
-    mix-blend-mode:multiply;
-  }
-  /* vignette + film grain layered on the photo */
+  /* dark scrim — soft top wash + heavy bottom gradient where the text sits */
   .hero__image::after{
-    content:"";
-    position:absolute; inset:0;
-    z-index:2;
+    content:""; position:absolute; inset:0;
     pointer-events:none;
+    z-index:1;
     background:
-      radial-gradient(ellipse at center, rgba(0,0,0,0) 40%, rgba(0,0,0,0.45) 100%),
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-    background-blend-mode:overlay;
-    opacity:0.95;
+      linear-gradient(to bottom,
+        rgba(10,10,10,0.55) 0%,
+        rgba(10,10,10,0.20) 14%,
+        rgba(10,10,10,0)    34%,
+        rgba(10,10,10,0)    44%,
+        rgba(10,10,10,0.55) 64%,
+        rgba(10,10,10,0.92) 100%);
   }
-
-  /* caption becomes a film stamp overlay on the photo */
+  /* film stamp at the top-left of the photo */
   .hero__imgcap{
     position:absolute !important;
-    top:auto !important;
+    top:calc(72px + env(safe-area-inset-top)) !important;
     left:18px !important;
-    right:18px !important;
-    bottom:18px !important;
+    bottom:auto !important;
     margin:0 !important;
-    z-index:3;
-    font-size:9px;
+    font-size:10px;
     letter-spacing:0.32em;
-    color:rgba(242,239,233,0.92);
-    text-shadow:0 1px 6px rgba(0,0,0,0.65);
-    display:flex; align-items:center; gap:10px;
-    pointer-events:none;
-  }
-  .hero__imgcap::before{
-    content:"";
-    width:6px; height:6px; flex-shrink:0;
-    background:var(--red);
-    border-radius:50%;
-    box-shadow:0 0 0 4px rgba(201,52,43,0.16);
-  }
-  /* ── aesthetic wordmark overlaid on the photo ── */
-  .hero__overlay{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    position:absolute;
-    inset:0;
+    color:rgba(242,239,233,0.9);
+    text-shadow:0 1px 6px rgba(0,0,0,0.7);
     z-index:3;
-    padding:48px 24px;
-    text-align:center;
-    pointer-events:none;
-    color:var(--bone);
-    text-shadow:0 2px 22px rgba(0,0,0,0.55);
-  }
-  .hero__overlay-eyebrow{
-    font-family:'Inter', system-ui, sans-serif;
-    font-size:10px;
-    font-weight:500;
-    letter-spacing:0.42em;
-    text-transform:uppercase;
-    margin-bottom:18px;
-    padding-bottom:14px;
-    position:relative;
-    color:rgba(242,239,233,0.92);
-  }
-  .hero__overlay-eyebrow::after{
-    content:"";
-    position:absolute; left:50%; bottom:0;
-    transform:translateX(-50%);
-    width:32px; height:1px;
-    background:var(--red);
-  }
-  .hero__overlay-mark{
-    font-family:'Cormorant Garamond', Georgia, serif;
-    font-weight:500;
-    font-size:56px;
-    line-height:0.94;
-    letter-spacing:-0.012em;
-    display:flex; flex-direction:column; align-items:center;
-    gap:0;
-  }
-  .hero__overlay-mark .or{
-    font-family:'Cormorant Garamond', Georgia, serif;
-    font-style:italic;
-    color:var(--red);
-    font-weight:500;
-    font-size:0.92em;
-    line-height:1;
-    margin:-2px 0;
-  }
-  .hero__overlay-foot{
-    margin-top:20px;
-    padding-top:14px;
-    position:relative;
-    font-family:'Inter', system-ui, sans-serif;
-    font-size:10px;
-    font-weight:500;
-    letter-spacing:0.42em;
-    text-transform:uppercase;
-    color:rgba(242,239,233,0.85);
-  }
-  .hero__overlay-foot::before{
-    content:"";
-    position:absolute; left:50%; top:0;
-    transform:translateX(-50%);
-    width:32px; height:1px;
-    background:var(--red);
   }
 
-  /* the wordmark + eyebrow now live ON the photo — hide the below-photo versions on mobile */
-  .hero__eyebrow,
-  .hero__headline{ display:none !important; }
-
-  /* text below photo — flatten .hero__type so meta can sit at the very end */
-  .hero__type{ display:contents; }
+  /* type — anchored to bottom of viewport, over the scrim */
+  .hero__type{
+    position:absolute;
+    left:0; right:0;
+    bottom:calc(48px + env(safe-area-inset-bottom));
+    padding:0 var(--pad);
+    z-index:3;
+    display:flex; flex-direction:column;
+    align-items:center; text-align:center;
+    grid-column:auto; grid-row:auto;
+    align-self:auto;
+  }
   .hero__eyebrow{
-    margin:8px var(--pad) 22px;
+    margin-bottom:22px;
     gap:10px;
     font-size:10px;
+    letter-spacing:0.32em;
     flex-wrap:wrap;
-    letter-spacing:0.22em;
+    justify-content:center;
+    color:rgba(242,239,233,0.9);
+    text-shadow:0 1px 8px rgba(0,0,0,0.65);
   }
-  .hero__eyebrow .rule{ flex:0 0 24px; }
+  .hero__eyebrow .rule{ flex:0 0 28px; background:rgba(242,239,233,0.5); }
+  .hero__eyebrow .dot{ box-shadow:0 0 12px rgba(201,52,43,0.6); }
 
-  /* refined Cormorant wordmark — sized to the scale */
   .hero__headline{
-    font-family:'Cormorant Garamond', Georgia, serif;
-    font-weight:500;
-    font-size:72px;
-    line-height:0.94;
-    letter-spacing:-0.018em;
+    font-family:var(--serif);
+    font-weight:900;
+    font-size:64px;
+    line-height:0.9;
+    letter-spacing:-0.038em;
     color:var(--bone);
-    margin:0 var(--pad);
+    margin:0;
+    text-align:center;
+    text-shadow:0 2px 24px rgba(0,0,0,0.65), 0 1px 3px rgba(0,0,0,0.45);
   }
-  .hero__headline .or{
-    font-family:'Cormorant Garamond', Georgia, serif;
-    font-weight:500;
-    font-style:italic;
-    color:var(--red);
-    letter-spacing:0;
-  }
-  .hero__headline .line--or{ padding-left:0; gap:0; align-items:baseline; }
+  .hero__headline .line--or{ justify-content:center; padding-left:0; gap:0; }
   .hero__headline .line--or::before{ display:none; }
   .hero__headline .dot-end{ color:var(--red); }
 
   .hero__sub{
-    margin:20px var(--pad) 16px;
-    font-family:'Cormorant Garamond', Georgia, serif;
-    font-style:italic;
-    font-weight:400;
-    font-size:20px;
-    line-height:1.4;
-    max-width:none;
-    color:var(--bone);
-    letter-spacing:0;
+    margin:22px auto 20px;
+    font-size:16px;
+    line-height:1.45;
+    max-width:32ch;
+    color:rgba(242,239,233,0.92);
+    text-shadow:0 1px 12px rgba(0,0,0,0.7);
   }
-  .hero__meta{ margin:0 var(--pad); gap:8px 14px; font-size:10px; letter-spacing:0.22em; }
+  .hero__meta{
+    justify-content:center;
+    gap:8px 12px;
+    font-size:10px;
+    letter-spacing:0.28em;
+    color:rgba(242,239,233,0.7);
+    text-shadow:0 1px 8px rgba(0,0,0,0.7);
+  }
+  .hero__meta .dot{ color:rgba(242,239,233,0.4); }
 
-  /* ════════ MANIFESTO — Inter sans (no more Playfair), serif italic emphasis ════════ */
+  /* ════════ SECTIONS — hairline divider + simple head ════════ */
+  section{ padding:64px var(--pad); }
+  .hero{ padding-left:0; padding-right:0; }
+  .flash-section{ background:#0d0c0b; }
+
+  .section-head{
+    display:flex; flex-direction:column;
+    gap:10px;
+    margin-bottom:36px;
+    padding-bottom:24px;
+    border-bottom:1px solid var(--rule);
+    align-items:flex-start;
+  }
+  .section-head__num{
+    font-size:10px;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    color:var(--red);
+    font-family:var(--sans);
+    font-weight:500;
+  }
+  .section-head__title{
+    font-family:var(--serif);
+    font-weight:900;
+    font-size:40px;
+    line-height:0.95;
+    letter-spacing:-0.025em;
+    color:var(--bone);
+    margin:0;
+  }
+  .section-head__title .or{ font-size:0.94em; }
+  .section-head__kicker{
+    text-align:left;
+    font-size:13px;
+    line-height:1.45;
+    color:var(--bone-dim);
+    max-width:none;
+    margin:0;
+  }
+
+  /* ════════ MANIFESTO ════════ */
   .manifesto{ grid-template-columns:1fr; gap:24px; }
   .manifesto__text{
-    font-family:'Inter', system-ui, sans-serif;
+    font-family:var(--serif);
     font-weight:400;
-    font-size:20px;
-    line-height:1.45;
-    letter-spacing:-0.005em;
+    font-size:24px;
+    line-height:1.25;
+    letter-spacing:-0.015em;
     color:var(--bone);
   }
   .manifesto__text em{
-    font-family:'Cormorant Garamond', Georgia, serif;
+    font-family:var(--italic);
     font-style:italic;
-    font-weight:500;
     color:var(--red);
+    font-weight:400;
   }
   .manifesto__image{ transform:none; max-width:50%; }
   .manifesto__image img{ aspect-ratio:1; }
-  .manifesto__image .cap{ font-size:10px; }
+  .manifesto__image .cap{ font-size:10px; margin-top:10px; }
 
-  /* ════════ FEATURED STRIP — 2×2 grid, 4 best ════════ */
+  /* ════════ FEATURED STRIP — 2×2 ════════ */
   .strip{ grid-template-columns:repeat(2, 1fr); gap:6px; }
   .strip__tile{ gap:0; }
   .strip__tile img{
@@ -1223,8 +1118,8 @@ footer{
   }
   .strip__tile:nth-child(n+5){ display:none; }
 
-  /* ════════ ARTISTS — 2×2 compact cards ════════ */
-  .artists{ grid-template-columns:repeat(2, 1fr); gap:10px; }
+  /* ════════ ARTISTS — 2×2 ════════ */
+  .artists{ grid-template-columns:repeat(2, 1fr); gap:14px; }
   .artist{
     flex-direction:column; align-items:stretch;
     gap:10px;
@@ -1233,8 +1128,8 @@ footer{
   }
   .artist__portrait{ aspect-ratio:1; border:1px solid var(--rule); }
   .artist__portrait::before{ inset:8px; }
-  .artist__portrait span{ font-size:10px; padding:4px 6px; letter-spacing:0.22em; }
-  .artist__name{ font-size:28px; line-height:1; margin:0; }
+  .artist__portrait span{ font-size:9px; padding:4px 6px; letter-spacing:0.22em; }
+  .artist__name{ font-size:24px; line-height:1; margin:0; }
   .artist__ig{
     padding-top:8px;
     border-top:1px solid var(--rule);
@@ -1247,73 +1142,66 @@ footer{
   .artist__ig::before{ content:'DM'; color:var(--bone-dim); letter-spacing:0.22em; }
   .artist__ig .arrow{ font-size:16px; }
 
-  /* ════════ GALLERY — chips + tight 2-col masonry ════════ */
+  /* ════════ GALLERY — chips + 2-col masonry ════════ */
   .filters{
     flex-wrap:nowrap; overflow-x:auto;
     scrollbar-width:none;
     -webkit-overflow-scrolling:touch;
-    margin:-6px calc(var(--pad) * -1) 16px;
-    padding:6px var(--pad) 12px;
-    gap:6px;
+    margin:-8px calc(var(--pad) * -1) 20px;
+    padding:8px var(--pad) 12px;
+    gap:8px;
   }
   .filters::-webkit-scrollbar{ display:none; }
-  .chip{ flex:0 0 auto; padding:10px 16px; font-size:12px; min-height:40px; }
+  .chip{ flex:0 0 auto; padding:9px 16px; font-size:11px; min-height:38px; }
   .gallery{ column-count:2; column-gap:6px; }
   .gallery__tile{ margin-bottom:6px; }
 
-  /* ════════ FLASH — 2×2 grid ════════ */
-  .flash{ grid-template-columns:repeat(2, 1fr); gap:24px 8px; }
-  .flash__label{ font-size:16px; line-height:1.2; }
-  .flash__price{ font-size:20px; }
+  /* ════════ FLASH — 2×2 ════════ */
+  .flash{ grid-template-columns:repeat(2, 1fr); gap:24px 10px; }
+  .flash__label{ font-size:15px; line-height:1.2; }
+  .flash__price{ font-size:18px; }
   .flash__claim{ font-size:10px; padding:8px 0 0; letter-spacing:0.22em; }
 
-  /* ════════ BOOKING — Inter sans copy, 3 stacked CTAs ════════ */
+  /* ════════ BOOKING ════════ */
   .booking{ grid-template-columns:1fr; gap:24px; }
   .booking__copy{
-    font-family:'Inter', system-ui, sans-serif;
+    font-family:var(--serif);
     font-weight:400;
-    font-size:20px;
-    line-height:1.45;
-    letter-spacing:-0.005em;
+    font-size:22px;
+    line-height:1.3;
+    letter-spacing:-0.015em;
     max-width:none;
     color:var(--bone);
   }
   .booking__copy em{
-    font-family:'Cormorant Garamond', Georgia, serif;
+    font-family:var(--italic);
     font-style:italic;
-    font-weight:500;
     color:var(--red);
   }
-  .booking__ctas{ display:flex; flex-direction:column; gap:8px; }
-  .cta{ padding:18px 20px; min-height:64px; }
-  .cta__label{ font-size:20px; }
+  .booking__ctas{ display:flex; flex-direction:column; gap:10px; }
+  .cta{ padding:18px 20px; min-height:62px; }
+  .cta__label{ font-size:18px; }
   .cta__sub{ font-size:10px; letter-spacing:0.22em; }
   .cta__arrow{ font-size:24px; }
-  .booking__accent{ grid-template-columns:1fr; gap:14px; margin-top:24px; padding-top:20px; }
+  .booking__accent{ grid-template-columns:1fr; gap:14px; margin-top:28px; padding-top:24px; }
   .booking__accent img{ width:120px; }
-  .booking__accent p{
-    font-family:'Inter', system-ui, sans-serif;
-    font-style:italic;
-    font-weight:400;
-    font-size:16px;
-    color:var(--bone-dim);
-  }
+  .booking__accent p{ font-size:16px; }
 
   /* ════════ AFTERCARE ════════ */
   .acc__num{ font-size:10px; min-width:30px; letter-spacing:0.22em; }
-  .acc__btn{ padding:20px 0; font-size:20px; gap:12px; }
-  .acc__bodyinner{ padding:0 0 24px 0; font-size:13px; line-height:1.6; }
+  .acc__btn{ padding:20px 0; font-size:18px; gap:12px; }
+  .acc__bodyinner{ padding:0 0 24px 0; font-size:14px; line-height:1.55; }
   .acc__icon{ font-size:22px; }
 
   /* ════════ FIND US ════════ */
   .find{ grid-template-columns:1fr; gap:20px; }
   .map{ aspect-ratio:16/10; }
-  .find__addr{ font-size:28px; line-height:1.18; letter-spacing:-0.02em; }
-  .hours th{ font-size:10px; padding:0 0 12px; letter-spacing:0.22em; }
+  .find__addr{ font-size:24px; line-height:1.2; letter-spacing:-0.02em; }
+  .hours th{ font-size:10px; padding:0 0 12px; letter-spacing:0.28em; }
   .hours td{ padding:13px 0; font-size:13px; }
   .find__maps{
     display:inline-flex; align-items:center;
-    font-size:10px; letter-spacing:0.22em; text-transform:uppercase;
+    font-size:10px; letter-spacing:0.28em; text-transform:uppercase;
     color:var(--red);
     min-height:44px;
   }
@@ -1321,7 +1209,7 @@ footer{
   .parking{ font-size:13px; }
 
   /* ════════ FOOTER ════════ */
-  footer{ padding:40px var(--pad) calc(28px + env(safe-area-inset-bottom)); border-top:4px solid var(--red); }
+  footer{ padding:48px var(--pad) calc(28px + env(safe-area-inset-bottom)); }
   .foot{ grid-template-columns:1fr; gap:24px; text-align:left; padding-bottom:24px; }
   .foot__contact{ align-items:flex-start; text-align:left; gap:8px; font-size:13px; }
   .foot__brand .wordmark{ font-size:28px; }
@@ -1329,22 +1217,22 @@ footer{
   .foot__bottom{ flex-direction:column; gap:6px; align-items:flex-start; text-align:left; font-size:10px; }
 }
 
-/* ── small phones: same scale, tighter padding ── */
+/* ── small phones: 360–420px ── */
 @media (max-width: 420px){
-  .hero{ padding:72px 0 36px; }
-  .hero__headline{ font-size:64px; }
-  .hero__sub{ font-size:18px; }
-  .section-head::before{ font-size:32px; }
-  .section-head__title{ font-size:48px; }
-  section:not(.hero){ padding:40px var(--pad) 48px; }
-  .manifesto__text, .booking__copy{ font-size:18px; }
-  .artist__name{ font-size:24px; }
+  .hero__headline{ font-size:56px; }
+  .hero__type{ bottom:calc(40px + env(safe-area-inset-bottom)); }
+  .hero__sub{ font-size:15px; margin:18px auto 18px; }
+  .section-head__title{ font-size:34px; }
+  section{ padding:56px var(--pad); }
+  .manifesto__text{ font-size:21px; }
+  .booking__copy{ font-size:19px; }
+  .artist__name{ font-size:22px; }
+  .find__addr{ font-size:22px; }
   .gallery{ column-gap:4px; }
   .gallery__tile{ margin-bottom:4px; }
   .strip{ gap:4px; }
-  .artists{ gap:8px; }
-  .flash{ gap:24px 6px; }
-  .find__addr{ font-size:24px; }
+  .artists{ gap:10px; }
+  .flash{ gap:20px 6px; }
 }
 
 /* ── reduced-motion: kill grain + transitions ── */
@@ -1423,15 +1311,6 @@ body.menu-open{ overflow:hidden; }
 
   <figure class="hero__image">
     <figcaption class="hero__imgcap sc sc--faint">№ 01 &nbsp;— &nbsp; Custom back, in progress</figcaption>
-    <div class="hero__overlay" aria-hidden="true">
-      <span class="hero__overlay-eyebrow">Tattoo Studio</span>
-      <span class="hero__overlay-mark">
-        <span>Freak</span>
-        <span class="or">or</span>
-        <span>Unique</span>
-      </span>
-      <span class="hero__overlay-foot">Downend · Bristol</span>
-    </div>
     <img src="images/01-hero-picks/24_DWwgsTEDK4N.jpg" width="1080" height="1440" loading="eager" fetchpriority="high" alt="Large-scale custom back tattoo, in progress" />
   </figure>
 </section>
@@ -1439,7 +1318,6 @@ body.menu-open{ overflow:hidden; }
 <!-- ═════════ 2. MANIFESTO ═════════ -->
 <section aria-label="Manifesto" id="manifesto">
   <div class="section-head">
-    <img class="bg-img" src="images/story-pieces/03_DYAVPxUgvxF.jpg" loading="lazy" decoding="async" aria-hidden="true" alt="" />
     <div class="section-head__num">№ 02 — Manifesto</div>
     <h2 class="section-head__title">No safe.<br>No generic.</h2>
     <div class="section-head__kicker sc sc--dim">The studio in one paragraph.</div>
@@ -1499,7 +1377,6 @@ body.menu-open{ overflow:hidden; }
 <!-- ═════════ 4. ARTISTS ═════════ -->
 <section aria-label="Artists" id="artists">
   <div class="section-head">
-    <img class="bg-img" src="images/01-hero-picks/21_DW_8sWbCMhh.jpg" loading="lazy" decoding="async" aria-hidden="true" alt="" />
     <div class="section-head__num">№ 04 — Artists</div>
     <h2 class="section-head__title">Four hands.<br>One floor.</h2>
     <div class="section-head__kicker sc sc--dim">Portraits coming soon — DM the studio to book by name.</div>
@@ -1547,7 +1424,6 @@ body.menu-open{ overflow:hidden; }
 <!-- ═════════ 5. GALLERY ═════════ -->
 <section aria-label="Gallery" id="gallery">
   <div class="section-head">
-    <img class="bg-img" src="images/mixed-portfolio/38_DWrkZrCjJTk.jpg" loading="lazy" decoding="async" aria-hidden="true" alt="" />
     <div class="section-head__num">№ 05 — Gallery</div>
     <h2 class="section-head__title">The full wall.</h2>
     <div class="section-head__kicker sc sc--dim">Filter by style. Tap for the IG short-code.</div>
@@ -1695,7 +1571,6 @@ body.menu-open{ overflow:hidden; }
 <div class="flash-section" id="flash">
 <section aria-label="Available flash">
   <div class="section-head">
-    <img class="bg-img" src="images/flash-designs/31_DWR6jWlghWX.jpg" loading="lazy" decoding="async" aria-hidden="true" alt="" />
     <div class="section-head__num">№ 06 — Available Flash</div>
     <h2 class="section-head__title">Flash.<br>Pick one. Wear it.</h2>
     <div class="section-head__kicker sc sc--dim">Pre-drawn pieces with set prices. DM to claim — first come, first inked.</div>
@@ -1771,7 +1646,6 @@ body.menu-open{ overflow:hidden; }
 <!-- ═════════ 7. BOOKING ═════════ -->
 <section aria-label="Booking" id="book">
   <div class="section-head">
-    <img class="bg-img" src="images/script-lettering/35_DWLyNvPjJWA.jpg" loading="lazy" decoding="async" aria-hidden="true" alt="" />
     <div class="section-head__num">№ 07 — Booking</div>
     <h2 class="section-head__title">Three doors<span class="or">. </span><br>Walk through any.</h2>
     <div class="section-head__kicker sc sc--dim">Three ways in — the studio answers whichever you use.</div>
@@ -1818,7 +1692,6 @@ body.menu-open{ overflow:hidden; }
 <!-- ═════════ 8. AFTERCARE ═════════ -->
 <section aria-label="Aftercare" id="aftercare">
   <div class="section-head">
-    <img class="bg-img" src="images/01-hero-picks/17_DXCmn60jACd.jpg" loading="lazy" decoding="async" aria-hidden="true" alt="" />
     <div class="section-head__num">№ 08 — Aftercare</div>
     <h2 class="section-head__title">Looking after it.</h2>
     <div class="section-head__kicker sc sc--dim">The short version, in five stages.</div>
@@ -1897,7 +1770,6 @@ body.menu-open{ overflow:hidden; }
 <!-- ═════════ 9. FIND US ═════════ -->
 <section aria-label="Find us" id="find">
   <div class="section-head">
-    <img class="bg-img" src="images/japanese/25_DWeELBnCH6O.jpg" loading="lazy" decoding="async" aria-hidden="true" alt="" />
     <div class="section-head__num">№ 09 — Find Us</div>
     <h2 class="section-head__title">Downend, Bristol.</h2>
     <div class="section-head__kicker sc sc--dim">Just off the A4174 ring road.</div>
