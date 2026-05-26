@@ -1,0 +1,1543 @@
+?<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Freak or Unique — Tattoo Studio, Downend, Bristol</title>
+<meta name="description" content="Custom tattoos in Downend, Bristol. Black-and-grey, fine-line, Japanese, lettering, large-scale work. Walk-ins welcome." />
+<meta property="og:title" content="Freak or Unique — Tattoo Studio, Downend, Bristol" />
+<meta property="og:description" content="Custom tattoos in Downend, Bristol. Black-and-grey, fine-line, Japanese, lettering, large-scale work. Walk-ins welcome." />
+<meta property="og:image" content="images/01-hero-picks/24_DWwgsTEDK4N.jpg" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preload" as="image" href="images/01-hero-picks/24_DWwgsTEDK4N.jpg" fetchpriority="high" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,800;0,900;1,400;1,700;1,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ───────── tokens ───────── */
+:root{
+  --ink:#0A0A0A;
+  --bone:#F2EFE9;
+  --bone-dim:#bdb8ad;
+  --bone-faint:#6e6960;
+  --red:#C9342B;
+  --rule:rgba(242,239,233,0.12);
+  --serif:"Playfair Display", "DM Serif Display", Georgia, serif;
+  --italic:"Playfair Display", Georgia, serif;
+  --sans:"Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --pad:clamp(20px, 4vw, 64px);
+  --maxw:1680px;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; }
+html{ scroll-behavior:smooth; }
+body{
+  background:var(--ink);
+  color:var(--bone);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+img{ display:block; max-width:100%; height:auto; }
+a{ color:inherit; text-decoration:none; }
+button{ font:inherit; color:inherit; background:none; border:0; padding:0; cursor:pointer; }
+:focus-visible{ outline:2px solid var(--red); outline-offset:3px; }
+
+/* ───────── film grain overlay ───────── */
+body::before{
+  content:"";
+  position:fixed; inset:0;
+  pointer-events:none;
+  z-index:200;
+  opacity:.06;
+  mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.4 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* ───────── small caps caption helper ───────── */
+.sc{
+  font-family:var(--sans);
+  font-weight:500;
+  font-size:11px;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+}
+.sc--dim{ color:var(--bone-dim); }
+.sc--faint{ color:var(--bone-faint); }
+
+/* word "or" treatment — used in wordmark + headlines */
+.or{
+  font-family:var(--italic);
+  font-style:italic;
+  font-weight:700;
+  color:var(--red);
+  letter-spacing:-0.005em;
+}
+
+/* ───────── nav ───────── */
+header.nav{
+  position:fixed; top:0; left:0; right:0;
+  z-index:100;
+  background:rgba(10,10,10,0.72);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--rule);
+}
+.nav__inner{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:32px;
+  padding:18px var(--pad);
+  max-width:var(--maxw);
+  margin:0 auto;
+}
+.wordmark{
+  font-family:var(--serif);
+  font-weight:900;
+  font-size:20px;
+  letter-spacing:-0.01em;
+  line-height:1;
+  display:flex; align-items:baseline; gap:0.28em;
+  white-space:nowrap;
+}
+.wordmark .or{ font-size:0.95em; }
+.wordmark a{ display:flex; align-items:baseline; gap:0.28em; }
+
+.nav__links{
+  display:flex; align-items:center; gap:28px;
+  list-style:none; margin:0; padding:0;
+}
+.nav__links a{
+  font-size:12px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--bone);
+  padding:6px 2px;
+  position:relative;
+  transition:color .2s ease;
+}
+.nav__links a:hover{ color:var(--red); }
+
+.btn-book{
+  display:inline-block;
+  background:var(--red);
+  color:var(--bone);
+  padding:11px 22px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  transition:transform .2s ease, background .2s ease;
+}
+.btn-book:hover{ background:#a82a23; transform:translateY(-1px); }
+
+.nav__burger{
+  display:none;
+  width:36px; height:36px;
+  align-items:center; justify-content:center;
+  position:relative;
+}
+.nav__burger span{
+  display:block; width:22px; height:1.5px; background:var(--bone);
+  position:relative;
+}
+.nav__burger span::before,.nav__burger span::after{
+  content:""; position:absolute; left:0; width:22px; height:1.5px; background:var(--bone);
+  transition:transform .25s ease, top .25s ease;
+}
+.nav__burger span::before{ top:-7px; }
+.nav__burger span::after{ top:7px; }
+.nav.open .nav__burger span{ background:transparent; }
+.nav.open .nav__burger span::before{ top:0; transform:rotate(45deg); }
+.nav.open .nav__burger span::after{ top:0; transform:rotate(-45deg); }
+
+/* ───────── hero ───────── */
+.hero{
+  position:relative;
+  min-height:100vh;
+  padding:120px var(--pad) 72px;
+  max-width:var(--maxw);
+  margin:0 auto;
+  display:grid;
+  grid-template-columns: 1fr minmax(300px, 38%);
+  grid-template-rows: 1fr auto;
+  gap:56px;
+  align-items:end;
+}
+
+/* hero decorative scaffolding — corner ticks, side rail, asterisk */
+.hero__ticks{
+  position:absolute;
+  inset:96px var(--pad) 48px var(--pad);
+  pointer-events:none;
+  color:var(--bone-faint);
+}
+.hero__ticks::before,
+.hero__ticks::after,
+.hero__ticks span.t-tr,
+.hero__ticks span.t-br{
+  content:"";
+  position:absolute;
+  width:14px; height:14px;
+  border:1px solid currentColor;
+  opacity:0.55;
+}
+.hero__ticks::before{ top:0; left:0; border-right:0; border-bottom:0; }
+.hero__ticks::after{ bottom:0; left:0; border-right:0; border-top:0; }
+.hero__ticks span.t-tr{ top:0; right:0; border-left:0; border-bottom:0; }
+.hero__ticks span.t-br{ bottom:0; right:0; border-left:0; border-top:0; }
+
+.hero__rail{
+  position:absolute;
+  left:calc(var(--pad) - 4px);
+  top:50%;
+  transform:translateY(-50%) rotate(-90deg);
+  transform-origin:left center;
+  display:flex; align-items:center; gap:14px;
+  color:var(--bone-faint);
+  white-space:nowrap;
+  pointer-events:none;
+}
+.hero__rail .bar{ width:42px; height:1px; background:currentColor; }
+.hero__star{
+  position:absolute;
+  top:140px;
+  right:calc(var(--pad) + 4px);
+  font-family:var(--serif);
+  font-weight:400;
+  font-style:normal;
+  color:var(--red);
+  font-size:22px;
+  line-height:1;
+  user-select:none;
+}
+.hero__type{
+  grid-column:1; grid-row:1 / span 2;
+  align-self:end;
+}
+.hero__eyebrow{
+  display:flex; align-items:center; gap:14px;
+  margin-bottom:28px;
+}
+.hero__eyebrow .dot{ width:6px; height:6px; background:var(--red); border-radius:50%; }
+.hero__eyebrow .rule{ flex:0 0 56px; height:1px; background:var(--rule); }
+
+.hero__headline{
+  font-family:var(--serif);
+  font-weight:900;
+  font-size:clamp(60px, 11.5vw, 184px);
+  line-height:0.92;
+  letter-spacing:-0.035em;
+  margin:0;
+  text-wrap:balance;
+  position:relative;
+}
+.hero__headline .or{
+  font-weight:900;
+  font-size:0.98em;
+  letter-spacing:-0.025em;
+  display:inline-block;
+  padding:0 0.04em;
+}
+.hero__headline .line{ display:block; }
+.hero__headline .line--or{
+  padding-left:0.18em;
+  display:flex;
+  align-items:center;
+  gap:0.3em;
+}
+.hero__headline .line--or::before{
+  content:"";
+  width:clamp(40px, 6vw, 96px);
+  height:1px;
+  background:var(--red);
+  opacity:0.7;
+  flex-shrink:0;
+}
+.hero__headline .dot-end{ color:var(--red); }
+
+.hero__sub{
+  margin:36px 0 18px;
+  font-size:clamp(17px, 1.4vw, 22px);
+  font-weight:400;
+  color:var(--bone);
+  max-width:34ch;
+  line-height:1.35;
+}
+.hero__meta{
+  display:flex; flex-wrap:wrap; gap:16px 22px;
+  color:var(--bone-dim);
+  font-size:12px;
+}
+.hero__meta .dot{ color:var(--bone-faint); }
+
+.hero__image{
+  grid-column:2; grid-row:1 / span 2;
+  position:relative;
+  align-self:stretch;
+  display:flex;
+  justify-content:flex-end;
+  align-items:stretch;
+}
+.hero__image img{
+  width:100%;
+  height:100%;
+  max-height:78vh;
+  object-fit:cover;
+  object-position:center 20%;
+  filter:contrast(1.05) saturate(0.9);
+}
+.hero__imgcap{
+  position:absolute;
+  top:-22px; left:-8px;
+  color:var(--bone-dim);
+}
+
+/* corner labels (top-right of hero zone) */
+.hero__corner{
+  position:absolute;
+  top:96px;
+  right:var(--pad);
+  text-align:right;
+  color:var(--bone-faint);
+}
+.hero__corner strong{ color:var(--bone); font-weight:500; }
+
+/* ───────── section scaffolding ───────── */
+section{
+  padding:120px var(--pad);
+  max-width:var(--maxw);
+  margin:0 auto;
+}
+.section-head{
+  display:grid;
+  grid-template-columns: max-content 1fr;
+  gap:48px;
+  align-items:end;
+  margin-bottom:64px;
+  padding-bottom:28px;
+  border-bottom:1px solid var(--rule);
+}
+.section-head__num{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:14px;
+  color:var(--red);
+  letter-spacing:0.05em;
+}
+.section-head__title{
+  font-family:var(--serif);
+  font-weight:900;
+  font-size:clamp(40px, 6vw, 88px);
+  line-height:0.94;
+  letter-spacing:-0.035em;
+  margin:0;
+  text-wrap:balance;
+}
+.section-head__title .or{ font-size:0.92em; }
+.section-head__kicker{
+  align-self:end;
+  justify-self:end;
+  color:var(--bone-dim);
+  max-width:36ch;
+  text-align:right;
+}
+
+/* ───────── manifesto ───────── */
+.manifesto{
+  display:grid;
+  grid-template-columns: 1fr minmax(220px, 30%);
+  gap:64px;
+  align-items:center;
+}
+.manifesto__text{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(28px, 3.4vw, 52px);
+  line-height:1.12;
+  letter-spacing:-0.02em;
+  margin:0;
+  text-wrap:pretty;
+}
+.manifesto__text em{
+  font-family:var(--italic);
+  font-style:italic;
+  color:var(--red);
+  font-weight:400;
+}
+.manifesto__image{
+  transform:translateY(28px);
+  position:relative;
+}
+.manifesto__image img{
+  width:100%;
+  aspect-ratio: 3 / 4;
+  object-fit:cover;
+  filter:contrast(1.05) saturate(0.85);
+}
+.manifesto__image .cap{
+  margin-top:14px;
+  color:var(--bone-dim);
+}
+
+/* ───────── featured strip ───────── */
+.strip{
+  display:grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap:14px;
+  align-items:start;
+}
+.strip__tile{
+  display:flex; flex-direction:column;
+  gap:10px;
+}
+.strip__tile img{
+  width:100%;
+  object-fit:cover;
+  filter:contrast(1.04) saturate(0.9);
+  transition:filter .4s ease, transform .4s ease;
+}
+.strip__tile:hover img{ filter:contrast(1.1) saturate(1); }
+.strip__tile .cap{
+  color:var(--bone-dim);
+  font-size:10px;
+  letter-spacing:0.22em;
+}
+/* asymmetric heights via nth-child */
+.strip__tile:nth-child(1) img{ aspect-ratio: 3 / 5; }
+.strip__tile:nth-child(2) img{ aspect-ratio: 3 / 4; margin-top:48px; }
+.strip__tile:nth-child(3) img{ aspect-ratio: 4 / 5; }
+.strip__tile:nth-child(4) img{ aspect-ratio: 3 / 4; margin-top:64px; }
+.strip__tile:nth-child(5) img{ aspect-ratio: 3 / 5; }
+.strip__tile:nth-child(6) img{ aspect-ratio: 4 / 5; margin-top:32px; }
+.strip__tile:nth-child(7) img{ aspect-ratio: 3 / 4; }
+
+/* ───────── artists ───────── */
+.artists{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:32px;
+}
+.artist{
+  display:flex; flex-direction:column;
+  gap:18px;
+}
+.artist__portrait{
+  aspect-ratio: 1 / 1;
+  background:#161513;
+  border:1px solid var(--rule);
+  position:relative;
+  display:flex; align-items:center; justify-content:center;
+  overflow:hidden;
+}
+.artist__portrait::before{
+  content:"";
+  position:absolute; inset:18px;
+  border:1px dashed rgba(242,239,233,0.18);
+}
+.artist__portrait span{
+  color:var(--bone-faint);
+  font-size:10px;
+  letter-spacing:0.22em;
+  text-align:center;
+  padding:8px 12px;
+}
+.artist__name{
+  font-family:var(--serif);
+  font-weight:900;
+  font-size:36px;
+  line-height:1;
+  letter-spacing:-0.02em;
+  margin:0;
+}
+.artist__style{
+  color:var(--bone-dim);
+  font-size:14px;
+  line-height:1.4;
+}
+.artist__ig{
+  color:var(--bone);
+  font-size:12px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  padding-top:14px;
+  margin-top:auto;
+  border-top:1px solid var(--rule);
+  display:flex; align-items:center; justify-content:space-between;
+}
+.artist__ig:hover{ color:var(--red); }
+.artist__ig .arrow{ transition:transform .2s ease; }
+.artist__ig:hover .arrow{ transform:translateX(4px); }
+
+/* ───────── gallery ───────── */
+.filters{
+  display:flex; flex-wrap:wrap; gap:8px;
+  margin:-24px 0 40px;
+}
+.chip{
+  font-size:11px;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  padding:8px 16px;
+  border:1px solid var(--rule);
+  border-radius:999px;
+  color:var(--bone-dim);
+  background:transparent;
+  transition:all .2s ease;
+}
+.chip:hover{ color:var(--bone); border-color:var(--bone-dim); }
+.chip.active{ background:var(--bone); color:var(--ink); border-color:var(--bone); }
+
+.gallery{
+  column-count: 4;
+  column-gap: 14px;
+}
+.gallery__tile{
+  break-inside:avoid;
+  margin-bottom:14px;
+  position:relative;
+  display:block;
+}
+.gallery__tile img{
+  width:100%;
+  filter:contrast(1.04) saturate(0.9);
+  transition:filter .4s ease;
+}
+.gallery__tile:hover img{ filter:contrast(1.1) saturate(1); }
+.gallery__tile .cap{
+  margin-top:8px;
+  color:var(--bone-faint);
+  font-size:10px;
+  letter-spacing:0.18em;
+  font-variant-numeric: tabular-nums;
+}
+.gallery__tile.is-hidden{ display:none; }
+
+/* ───────── flash ───────── */
+.flash-section{ background:#070707; }
+.flash-section section{ padding-top:120px; padding-bottom:120px; }
+.flash{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:32px 24px;
+}
+.flash__tile{
+  display:flex; flex-direction:column;
+  gap:14px;
+}
+.flash__img{
+  aspect-ratio: 1 / 1;
+  background:#0e0e0e;
+  overflow:hidden;
+  position:relative;
+}
+.flash__img img{
+  width:100%; height:100%;
+  object-fit:cover;
+  transition:transform .5s ease;
+}
+.flash__tile:hover .flash__img img{ transform:scale(1.03); }
+.flash__meta{
+  display:flex; align-items:baseline; justify-content:space-between;
+  gap:12px;
+}
+.flash__label{
+  font-family:var(--serif);
+  font-weight:700;
+  font-size:20px;
+  letter-spacing:-0.01em;
+  line-height:1.15;
+}
+.flash__price{
+  font-family:var(--serif);
+  font-weight:900;
+  font-size:22px;
+  color:var(--red);
+  letter-spacing:-0.02em;
+  white-space:nowrap;
+}
+.flash__price.tbd{ color:var(--bone-faint); font-style:italic; font-weight:400; }
+.flash__claim{
+  font-size:11px;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  padding:10px 0 0;
+  border-top:1px solid var(--rule);
+  display:flex; justify-content:space-between; align-items:center;
+  color:var(--bone-dim);
+  transition:color .2s ease;
+}
+.flash__claim:hover{ color:var(--red); }
+.flash__claim strong{ color:var(--bone); font-weight:600; letter-spacing:0.22em; }
+
+/* ───────── booking ───────── */
+.booking{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:64px;
+  align-items:start;
+}
+.booking__copy{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(22px, 2.2vw, 30px);
+  line-height:1.3;
+  letter-spacing:-0.015em;
+  max-width:24ch;
+}
+.booking__copy em{
+  font-family:var(--italic);
+  font-style:italic;
+  color:var(--red);
+}
+.booking__ctas{
+  display:flex; flex-direction:column;
+  gap:14px;
+}
+.cta{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:20px;
+  padding:26px 28px;
+  background:#141311;
+  border:1px solid var(--rule);
+  transition:all .2s ease;
+}
+.cta:hover{
+  background:var(--red);
+  border-color:var(--red);
+  transform:translateX(4px);
+}
+.cta__label{
+  font-family:var(--serif);
+  font-weight:700;
+  font-size:clamp(20px, 2vw, 28px);
+  letter-spacing:-0.015em;
+}
+.cta__sub{
+  display:block;
+  font-family:var(--sans);
+  font-size:11px;
+  font-weight:400;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--bone-dim);
+  margin-top:6px;
+}
+.cta:hover .cta__sub{ color:rgba(255,255,255,0.85); }
+.cta__arrow{
+  font-family:var(--serif);
+  font-size:32px;
+  line-height:1;
+  transition:transform .25s ease;
+}
+.cta:hover .cta__arrow{ transform:translateX(6px); }
+
+/* booking script tattoo accent */
+.booking__accent{
+  margin-top:64px;
+  display:grid;
+  grid-template-columns: 200px 1fr;
+  gap:24px;
+  align-items:end;
+  border-top:1px solid var(--rule);
+  padding-top:32px;
+}
+.booking__accent img{
+  width:200px;
+  aspect-ratio: 3 / 4;
+  object-fit:cover;
+  filter:contrast(1.04) saturate(0.85);
+}
+.booking__accent p{
+  font-family:var(--italic);
+  font-style:italic;
+  font-size:22px;
+  color:var(--bone-dim);
+  line-height:1.3;
+  max-width:30ch;
+}
+
+/* ───────── aftercare accordion ───────── */
+.accordion{
+  border-top:1px solid var(--rule);
+}
+.acc{
+  border-bottom:1px solid var(--rule);
+}
+.acc__btn{
+  width:100%;
+  display:flex; align-items:baseline; justify-content:space-between;
+  gap:24px;
+  padding:28px 0;
+  text-align:left;
+  font-family:var(--serif);
+  font-weight:700;
+  font-size:clamp(22px, 2.4vw, 32px);
+  letter-spacing:-0.015em;
+  color:var(--bone);
+  transition:color .2s ease;
+}
+.acc__btn:hover{ color:var(--red); }
+.acc__num{
+  font-family:var(--sans);
+  font-size:11px;
+  letter-spacing:0.22em;
+  color:var(--bone-faint);
+  font-weight:400;
+  font-feature-settings:"tnum";
+  min-width:36px;
+}
+.acc__title{ flex:1; }
+.acc__icon{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:28px;
+  line-height:1;
+  color:var(--red);
+  transition:transform .25s ease;
+}
+.acc.open .acc__icon{ transform:rotate(45deg); }
+.acc__body{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .35s ease;
+}
+.acc__bodyinner{
+  padding:0 0 32px 56px;
+  max-width:62ch;
+  color:var(--bone-dim);
+  font-size:16px;
+  line-height:1.6;
+}
+.acc__bodyinner p{ margin:0 0 12px; }
+.acc__bodyinner p:last-child{ margin:0; }
+
+/* ───────── find us ───────── */
+.find{
+  display:grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap:48px;
+  align-items:start;
+}
+.map{
+  aspect-ratio: 4 / 3;
+  background:
+    linear-gradient(135deg, rgba(201,52,43,0.06), transparent 60%),
+    repeating-linear-gradient(0deg, #0e0e0e 0 1px, transparent 1px 56px),
+    repeating-linear-gradient(90deg, #0e0e0e 0 1px, transparent 1px 56px),
+    #0a0a0a;
+  border:1px solid var(--rule);
+  position:relative;
+  display:flex; align-items:center; justify-content:center;
+}
+.map__label{
+  position:absolute; bottom:18px; left:18px;
+  color:var(--bone-faint);
+}
+.map__pin{
+  position:absolute; left:50%; top:46%;
+  transform:translate(-50%,-50%);
+  display:flex; flex-direction:column; align-items:center; gap:8px;
+}
+.map__pin .pin-dot{
+  width:14px; height:14px;
+  background:var(--red);
+  border-radius:50%;
+  box-shadow:0 0 0 6px rgba(201,52,43,0.18), 0 0 0 14px rgba(201,52,43,0.08);
+}
+.map__pin .pin-label{
+  background:var(--bone);
+  color:var(--ink);
+  font-size:10px;
+  letter-spacing:0.18em;
+  padding:4px 8px;
+  font-weight:600;
+}
+
+.find__info{
+  display:flex; flex-direction:column;
+  gap:36px;
+}
+.find__addr{
+  font-family:var(--serif);
+  font-weight:700;
+  font-size:clamp(24px, 2.4vw, 34px);
+  line-height:1.15;
+  letter-spacing:-0.02em;
+  margin:0;
+}
+.find__addr .or{ font-size:0.95em; }
+
+.hours{
+  width:100%;
+  border-collapse:collapse;
+  font-size:14px;
+}
+.hours th{
+  text-align:left;
+  font-weight:500;
+  font-size:11px;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--bone-faint);
+  padding:0 0 14px;
+  border-bottom:1px solid var(--rule);
+}
+.hours td{
+  padding:12px 0;
+  border-bottom:1px solid var(--rule);
+  color:var(--bone);
+  font-feature-settings:"tnum";
+}
+.hours td:last-child{
+  text-align:right;
+  color:var(--bone-dim);
+}
+.hours td.closed{ color:var(--bone-faint); font-style:italic; }
+
+.parking{
+  font-size:13px;
+  color:var(--bone-dim);
+  border-left:2px solid var(--red);
+  padding:6px 0 6px 16px;
+  margin:0;
+}
+
+/* ───────── footer ───────── */
+footer{
+  border-top:1px solid var(--rule);
+  padding:64px var(--pad) 40px;
+  max-width:var(--maxw);
+  margin:0 auto;
+}
+.foot{
+  display:grid;
+  grid-template-columns: 1fr auto;
+  gap:48px;
+  align-items:start;
+  padding-bottom:48px;
+}
+.foot__brand .wordmark{ font-size:48px; }
+.foot__brand p{
+  margin:16px 0 0;
+  color:var(--bone-dim);
+  max-width:34ch;
+  font-style:italic;
+  font-family:var(--italic);
+  font-size:18px;
+}
+.foot__contact{
+  display:flex; flex-direction:column;
+  gap:8px;
+  text-align:right;
+  font-size:14px;
+}
+.foot__contact a:hover{ color:var(--red); }
+.foot__bottom{
+  display:flex; justify-content:space-between; align-items:center;
+  padding-top:28px;
+  border-top:1px solid var(--rule);
+  color:var(--bone-faint);
+  font-size:11px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+}
+
+/* ───────── responsive ───────── */
+@media (max-width: 1100px){
+  .hero{ grid-template-columns: 1fr; }
+  .hero__type{ grid-column:1; grid-row:auto; }
+  .hero__image{ grid-column:1; grid-row:auto; }
+  .hero__image img{ max-height:60vh; }
+  .hero__corner{ display:none; }
+  .strip{ grid-template-columns: repeat(3, 1fr); }
+  .strip__tile img{ aspect-ratio: 3 / 4 !important; margin-top:0 !important; }
+  .artists{ grid-template-columns: repeat(2, 1fr); }
+  .gallery{ column-count:3; }
+  .flash{ grid-template-columns: repeat(3, 1fr); }
+  .booking{ grid-template-columns: 1fr; gap:40px; }
+  .find{ grid-template-columns: 1fr; }
+  .manifesto{ grid-template-columns: 1fr; }
+  .manifesto__image{ max-width:60%; transform:none; }
+  .section-head{ grid-template-columns: 1fr; gap:16px; }
+  .section-head__kicker{ text-align:left; justify-self:start; }
+}
+
+@media (max-width: 760px){
+  section{ padding:80px var(--pad); }
+  .hero{ padding-top:100px; }
+  .hero__headline{ font-size:clamp(56px, 18vw, 140px); letter-spacing:-0.03em; }
+  .hero__headline .line--or::before{ width:clamp(28px, 10vw, 64px); }
+  .hero__rail{ display:none; }
+  .hero__star{ top:110px; font-size:18px; }
+  .nav__links{
+    display:none;
+    position:absolute; top:100%; left:0; right:0;
+    background:var(--ink);
+    border-bottom:1px solid var(--rule);
+    flex-direction:column;
+    align-items:flex-start;
+    padding:24px var(--pad);
+    gap:18px;
+  }
+  .nav.open .nav__links{ display:flex; }
+  .nav__burger{ display:flex; order:3; }
+  .btn-book{ padding:9px 16px; font-size:11px; }
+  .strip{ grid-template-columns: repeat(2, 1fr); gap:10px; }
+  .artists{ grid-template-columns: 1fr; }
+  .gallery{ column-count:2; column-gap:10px; }
+  .gallery__tile{ margin-bottom:10px; }
+  .flash{ grid-template-columns: repeat(2, 1fr); gap:24px 14px; }
+  .booking__accent{ grid-template-columns: 1fr; }
+  .foot{ grid-template-columns: 1fr; }
+  .foot__contact{ text-align:left; }
+  .foot__brand .wordmark{ font-size:36px; }
+  .acc__bodyinner{ padding-left:0; }
+}
+
+/* prevent body scroll when mobile menu open */
+body.menu-open{ overflow:hidden; }
+</style>
+</head>
+<body>
+
+<!-- ═════════ NAV ═════════ -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="wordmark" href="#top" aria-label="Freak or Unique home">
+      <span>Freak</span><span class="or">or</span><span>Unique</span>
+    </a>
+    <button class="nav__burger" aria-label="Toggle menu" aria-expanded="false" id="burger"><span></span></button>
+    <ul class="nav__links" id="navLinks">
+      <li><a href="#artists">Artists</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#flash">Flash</a></li>
+      <li><a href="#aftercare">Aftercare</a></li>
+      <li><a href="#find">Find Us</a></li>
+    </ul>
+    <a class="btn-book" href="#book">Book</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ═════════ 1. HERO ═════════ -->
+<section class="hero" aria-label="Intro">
+  <div class="hero__ticks" aria-hidden="true"><span class="t-tr"></span><span class="t-br"></span></div>
+  <div class="hero__rail sc sc--faint" aria-hidden="true">
+    <span>F · O · U</span>
+    <span class="bar"></span>
+    <span>VOL.01</span>
+  </div>
+  <div class="hero__star" aria-hidden="true">✷</div>
+
+  <div class="hero__corner sc">
+    <div><strong>EST.</strong> &nbsp; DOWNEND, BRISTOL</div>
+    <div style="margin-top:6px;">ISSUE №.01 / 2026</div>
+  </div>
+
+  <div class="hero__type">
+    <div class="hero__eyebrow sc sc--dim">
+      <span class="dot"></span>
+      <span>An independent tattoo studio</span>
+      <span class="rule"></span>
+      <span>Walk-ins welcome</span>
+    </div>
+    <h1 class="hero__headline">
+      <span class="line">Freak</span>
+      <span class="line line--or"><span class="or">or</span></span>
+      <span class="line">Unique<span class="dot-end">.</span></span>
+    </h1>
+    <p class="hero__sub">Custom tattoos in Downend, Bristol. Walk-ins welcome.</p>
+    <div class="hero__meta sc">
+      <span>@freakoruniquetattoo</span>
+      <span class="dot">/</span>
+      <span>83 Quakers Road</span>
+      <span class="dot">/</span>
+      <span>BS16 6NH</span>
+    </div>
+  </div>
+
+  <figure class="hero__image">
+    <figcaption class="hero__imgcap sc sc--faint">№ 01 &nbsp;— &nbsp; Custom back, in progress</figcaption>
+    <img src="images/01-hero-picks/24_DWwgsTEDK4N.jpg" width="1080" height="1440" loading="eager" fetchpriority="high" alt="Large-scale custom back tattoo, in progress" />
+  </figure>
+</section>
+
+<!-- ═════════ 2. MANIFESTO ═════════ -->
+<section aria-label="Manifesto" id="manifesto">
+  <div class="section-head">
+    <div class="section-head__num">№ 02 — Manifesto</div>
+    <h2 class="section-head__title">No safe.<br>No generic.</h2>
+    <div class="section-head__kicker sc sc--dim">The studio in one paragraph.</div>
+  </div>
+
+  <div class="manifesto">
+    <p class="manifesto__text">
+      We don't do <em>safe.</em> We don't do <em>generic.</em> Bring us the idea you've been sitting on for three years — black-and-grey, fine-line, Japanese, lettering, whatever it is — and we'll make it yours.
+    </p>
+    <figure class="manifesto__image">
+      <img src="images/story-pieces/03_DYAVPxUgvxF.jpg" width="1080" height="1080" loading="lazy" decoding="async" alt="Illustrative story-piece tattoo, dark woodland theme" />
+      <div class="cap sc sc--faint">DYAVPxUgvxF &nbsp;·&nbsp; Story piece</div>
+    </figure>
+  </div>
+</section>
+
+<!-- ═════════ 3. FEATURED STRIP ═════════ -->
+<section aria-label="Featured work" id="featured">
+  <div class="section-head">
+    <div class="section-head__num">№ 03 — Featured Work</div>
+    <h2 class="section-head__title">Range, <span class="or">not</span> repetition.</h2>
+    <div class="section-head__kicker sc sc--dim">A row of recent pieces. Hover for caption.</div>
+  </div>
+
+  <div class="strip">
+    <figure class="strip__tile">
+      <img src="images/01-hero-picks/40_DXKHeLDjOHJ.jpg" width="1080" height="1440" loading="lazy" decoding="async" alt="Delicate fine-line back tattoo" />
+      <figcaption class="cap sc">Delicate back</figcaption>
+    </figure>
+    <figure class="strip__tile">
+      <img src="images/01-hero-picks/21_DW_8sWbCMhh.jpg" width="1080" height="1440" loading="lazy" decoding="async" alt="Portrait tattoo in black-and-grey realism" />
+      <figcaption class="cap sc">Medusa</figcaption>
+    </figure>
+    <figure class="strip__tile">
+      <img src="images/01-hero-picks/03_DYAVPxUgvxF.jpg" width="1080" height="1080" loading="lazy" decoding="async" alt="Illustrative story-piece tattoo" />
+      <figcaption class="cap sc">Red Riding Hood</figcaption>
+    </figure>
+    <figure class="strip__tile">
+      <img src="images/01-hero-picks/35_DWLyNvPjJWA.jpg" width="1080" height="1080" loading="lazy" decoding="async" alt="Script lettering tattoo, neck placement" />
+      <figcaption class="cap sc">Script</figcaption>
+    </figure>
+    <figure class="strip__tile">
+      <img src="images/01-hero-picks/17_DXCmn60jACd.jpg" width="1080" height="1440" loading="lazy" decoding="async" alt="Cherub forearm tattoo, black-and-grey" />
+      <figcaption class="cap sc">Cherub</figcaption>
+    </figure>
+    <figure class="strip__tile">
+      <img src="images/01-hero-picks/34_DV_zwBmgGyb.jpg" width="1080" height="1440" loading="lazy" decoding="async" alt="Black-and-grey portrait tattoo" />
+      <figcaption class="cap sc">Portrait</figcaption>
+    </figure>
+    <figure class="strip__tile">
+      <img src="images/01-hero-picks/18_DW4P2OaDJKg.jpg" width="1080" height="1440" loading="lazy" decoding="async" alt="Custom skull tattoo with ornamental work" />
+      <figcaption class="cap sc">Skull</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ═════════ 4. ARTISTS ═════════ -->
+<section aria-label="Artists" id="artists">
+  <div class="section-head">
+    <div class="section-head__num">№ 04 — Artists</div>
+    <h2 class="section-head__title">Four hands.<br>One floor.</h2>
+    <div class="section-head__kicker sc sc--dim">Portraits coming soon — DM the studio to book by name.</div>
+  </div>
+
+  <div class="artists">
+    <article class="artist">
+      <div class="artist__portrait"><span>[ARTIST PORTRAIT — TODO]</span></div>
+      <h3 class="artist__name">Ben</h3>
+      <p class="artist__style">Resident artist <!-- TODO confirm style specialization with studio --></p>
+      <a class="artist__ig" href="https://www.instagram.com/freakoruniquetattoo/" target="_blank" rel="noopener">
+        <span>@freakoruniquetattoo</span><span class="arrow">→</span>
+      </a>
+    </article>
+
+    <article class="artist">
+      <div class="artist__portrait"><span>[ARTIST PORTRAIT — TODO]</span></div>
+      <h3 class="artist__name">Mike</h3>
+      <p class="artist__style">Resident artist <!-- TODO confirm style specialization with studio --></p>
+      <a class="artist__ig" href="https://www.instagram.com/freakoruniquetattoo/" target="_blank" rel="noopener">
+        <span>@freakoruniquetattoo</span><span class="arrow">→</span>
+      </a>
+    </article>
+
+    <article class="artist">
+      <div class="artist__portrait"><span>[ARTIST PORTRAIT — TODO]</span></div>
+      <h3 class="artist__name">Carlo</h3>
+      <p class="artist__style">Resident artist <!-- TODO confirm style specialization with studio --></p>
+      <a class="artist__ig" href="https://www.instagram.com/freakoruniquetattoo/" target="_blank" rel="noopener">
+        <span>@freakoruniquetattoo</span><span class="arrow">→</span>
+      </a>
+    </article>
+
+    <article class="artist">
+      <div class="artist__portrait"><span>[ARTIST PORTRAIT — TODO]</span></div>
+      <h3 class="artist__name">Junior Artists</h3>
+      <p class="artist__style">Apprentices working under the residents <!-- TODO confirm with studio --></p>
+      <a class="artist__ig" href="https://www.instagram.com/freakoruniquetattoo/" target="_blank" rel="noopener">
+        <span>@freakoruniquetattoo</span><span class="arrow">→</span>
+      </a>
+    </article>
+  </div>
+</section>
+
+<!-- ═════════ 5. GALLERY ═════════ -->
+<section aria-label="Gallery" id="gallery">
+  <div class="section-head">
+    <div class="section-head__num">№ 05 — Gallery</div>
+    <h2 class="section-head__title">The full wall.</h2>
+    <div class="section-head__kicker sc sc--dim">Filter by style. Tap for the IG short-code.</div>
+  </div>
+
+  <div class="filters" role="tablist" aria-label="Gallery filters">
+    <button class="chip active" data-filter="all">All</button>
+    <button class="chip" data-filter="bg">Black &amp; Grey</button>
+    <button class="chip" data-filter="flash">Flash</button>
+    <button class="chip" data-filter="fineline">Fine Line</button>
+    <button class="chip" data-filter="colour">Colour</button>
+    <button class="chip" data-filter="japanese">Japanese</button>
+  </div>
+
+  <div class="gallery" id="galleryGrid">
+
+    <!-- Black & Grey -->
+    <figure class="gallery__tile" data-cats="bg">
+      <img src="images/black-and-grey/01_DYNeUFvALqE.jpg" width="1080" height="1102" loading="lazy" decoding="async" alt="Black-and-grey tattoo" />
+      <figcaption class="cap">DYNeUFvALqE &nbsp;·&nbsp; Black &amp; Grey</figcaption>
+    </figure>
+    <figure class="gallery__tile" data-cats="bg">
+      <img src="images/black-and-grey/02_DYIB_ttCMY-.jpg" width="640" height="1136" loading="lazy" decoding="async" alt="Black-and-grey portrait piece" />
+      <figcaption class="cap">DYIB_ttCMY- &nbsp;·&nbsp; Black &amp; Grey</figcaption>
+    </figure>
+    <figure class="gallery__tile" data-cats="bg">
+      <img src="images/black-and-grey/08_DXpWsVCAMLd.jpg" width="1080" height="1440" loading="lazy" decoding="async" alt="Black-and-grey leg sleeve" />
+      <figcaption class="cap">DXpWsVCAMLd &nbsp;·&nbsp; Black &amp; Grey</figcaption>
+    </figure>
+    <figure class="gallery__tile" data-cats="bg">
+      <img src="images/black-and-grey/19_DXj94FUgGq7.jpg" width="1080" height="1080" loading="lazy" decoding="async" alt="Black-and-grey floral piece" />
+      <figcaption class="cap">DXj94FUgGq7 &nbsp;·&nbsp; Black &amp; Grey</figcaption>
+    </figure>
+    <figure class="gallery__tile" data-cats="bg">
+      <img src="images/black-and-grey/20_DXM5XgeDG2D.jpg" width="1080" height="1440" loading="lazy" decoding="async" alt="Black-and-grey sleeve work" />
+      <figcaption class="cap">DXM5XgeDG2D &nbsp;·&nbsp; Black &amp; Grey</figcaption>
+    </figure>
+    <figure class="gallery__tile" data-cats="bg">
+      <img src="images/black-and-grey/23_DWRw19_AMkn.jpg" width="1080" height="1223" loading="lazy" decoding="async" alt="Black-and-grey portrait tattoo" />
+      <figcaption class="cap">DWRw19_AMkn &nbsp;·&nbsp; Black &amp; Grey</figcaption>
+    </figure>
+    <figure class="gallery__tile" data-cats="bg">
+      <img src="images/black-and-grey/28_DWjnH2EghIk.jpg" width="1080" height="1440" loading="lazy" decoding="async" alt="Black-and-grey portrait piece" />
+      <figcaption class="cap">DWjnH2EghIk &nbsp;·&nbsp; Black &amp; Grey</figcaption>
+    </figure>
+    <figure class="gallery__tile" data-cats="bg">
+      <img src="images/black-and-grey/29_DWPJFHWDCjH.jpg" width="1080" height="1440" loading="lazy" decoding="async" alt="Black-and-grey calf piece" />
+      <figcaption class="cap">DWPJFHWDCjH &nbsp;·&nbsp; Black &amp; Grey</figcaption>
+    </figure>
+    <figure class="gallery__tile" data-cats="bg">
+      <img src="images/black-and-grey/37_DWW7H1rABg5.jpg" width="1080" height="1920" loading="lazy" decoding="async" alt="Black-and-grey realism sleeve" />
+      <figcaption class="cap">DWW7H1rABg5 &nbsp;·&nbsp; Black &amp; Grey</figcaption>
+    </figure>
+
+    <!-- Fine line -->
+    <figure class="gallery__tile" data-cats="fineline">
+      <img src="images/fine-line/06_DYZ_bqdCHla.jpg" width="1080" height="1440" loading="lazy" decoding="async" alt="Fine-line floral tattoo" />
+      <figcaption class="cap">DYZ_bqdCHla &nbsp;·&nbsp; Fine Line</figcaption>
+    </figure>
+    <figure class="gallery__tile" data-cats="fineline">
+      <img src="images/fine-line/27_DWYVzjsgtS1.jpg" width="1080" height="1080" loading="lazy" decoding="async" alt="Fine-line bird tattoo" />
+      <figcaption class="cap">DWYVzjsgtS1 &nbsp;·&nbsp; Fine Line</figcaption>
+    </figure>
+    <figure class="gallery__tile" data-cats="fineline">
+      <img src="images/fine-line/36_DWhJuyHgKQK.jpg" width="640" height="1136" loading="lazy" decoding="async" alt="Fine-line sentimental piece" />
+      <figcaption class="cap">DWhJuyHgKQK &nbsp;·&nbsp; Fine Line</figcaption>
+    </figure>
+
+    <!-- Colour -->
+    <figure class="gallery__tile" data-cats="colour">
+      <img src="images/color/05_DXzOgAAgjdI.jpg" width="1080" height="1080" loading="lazy" decoding="async" alt="Colour tiger tattoo design" />
+      <figcaption class="cap">DXzOgAAgjdI &nbsp;·&nbsp; Colour</figcaption>
+    </figure>
+    <figure class="gallery__tile" data-cats="colour">
+      <img src="images/color/11_DX4NDTViNyq.jpg" width="1080" height="1440" loading="lazy" decoding="async" alt="Colour gaming-themed sleeve" />
+      <figcaption class="cap">DX4NDTViNyq &nbsp;·&nbsp; Colour</figcaption>
+    </figure>
+    <figure class="gallery__tile" data-cats="colour">
+      <img src="images/color/12_DX19yCpjWnW.jpg" width="1080" height="1437" loading="lazy" decoding="async" alt="Colour forearm tattoo" />
+      <figcaption class="cap">DX19yCpjWnW &nbsp;·&nbsp; Colour</figcaption>
+    </figure>
+    <figure class="gallery__tile" data-cats="colour">
+      <img src="images/color/30_DW6gULDiBNd.jpg" width="720" height="960" loading="lazy" decoding="async" alt="Colour sealife and floral design" />
+      <figcaption class="cap">DW6gULDiBNd &nbsp;·&nbsp; Colour</figcaption>
+    </figure>
+
+    <!-- Japanese -->
+    <figure class="gallery__tile" data-cats="japanese">
+      <img src="images/japanese/09_DXxHS_wgMj_.jpg" width="720" height="960" loading="lazy" decoding="async" alt="Japanese-style sleeve" />
+      <figcaption class="cap">DXxHS_wgMj_ &nbsp;·&nbsp; Japanese</figcaption>
+    </figure>
+    <figure class="gallery__tile" data-cats="japanese">
+      <img src="images/japanese/16_DW6xJ2nCOAq.jpg" width="1080" height="1440" loading="lazy" decoding="async" alt="Japanese cover-up tattoo, line work" />
+      <figcaption class="cap">DW6xJ2nCOAq &nbsp;·&nbsp; Japanese</figcaption>
+    </figure>
+    <figure class="gallery__tile" data-cats="japanese">
+      <img src="images/japanese/25_DWeELBnCH6O.jpg" width="1080" height="1440" loading="lazy" decoding="async" alt="Japanese-style sleeve, black-and-grey" />
+      <figcaption class="cap">DWeELBnCH6O &nbsp;·&nbsp; Japanese</figcaption>
+    </figure>
+
+    <!-- Flash designs in gallery filter -->
+    <figure class="gallery__tile" data-cats="flash">
+      <img src="images/flash-designs/04_DYKms_oiyKp.jpg" width="640" height="1136" loading="lazy" decoding="async" alt="Flash design set" />
+      <figcaption class="cap">DYKms_oiyKp &nbsp;·&nbsp; Flash</figcaption>
+    </figure>
+    <figure class="gallery__tile" data-cats="flash">
+      <img src="images/flash-designs/15_DXZs4feghto.jpg" width="720" height="960" loading="lazy" decoding="async" alt="Colour tiger flash design" />
+      <figcaption class="cap">DXZs4feghto &nbsp;·&nbsp; Flash</figcaption>
+    </figure>
+    <figure class="gallery__tile" data-cats="flash">
+      <img src="images/flash-designs/31_DWR6jWlghWX.jpg" width="540" height="960" loading="lazy" decoding="async" alt="Skeleton flash design" />
+      <figcaption class="cap">DWR6jWlghWX &nbsp;·&nbsp; Flash</figcaption>
+    </figure>
+
+
+    <!-- hero-pick mirrors so filtered views aren't empty of the best work -->
+    <figure class="gallery__tile" data-cats="bg">
+      <img src="images/01-hero-picks/21_DW_8sWbCMhh.jpg" width="1080" height="1440" loading="lazy" decoding="async" alt="Portrait tattoo in black-and-grey realism" />
+      <figcaption class="cap">DW_8sWbCMhh &nbsp;·&nbsp; Black &amp; Grey</figcaption>
+    </figure>
+    <figure class="gallery__tile" data-cats="bg">
+      <img src="images/01-hero-picks/17_DXCmn60jACd.jpg" width="1080" height="1440" loading="lazy" decoding="async" alt="Cherub forearm tattoo, black-and-grey" />
+      <figcaption class="cap">DXCmn60jACd &nbsp;·&nbsp; Black &amp; Grey</figcaption>
+    </figure>
+    <figure class="gallery__tile" data-cats="bg">
+      <img src="images/01-hero-picks/34_DV_zwBmgGyb.jpg" width="1080" height="1440" loading="lazy" decoding="async" alt="Black-and-grey portrait tattoo" />
+      <figcaption class="cap">DV_zwBmgGyb &nbsp;·&nbsp; Black &amp; Grey</figcaption>
+    </figure>
+    <figure class="gallery__tile" data-cats="bg">
+      <img src="images/01-hero-picks/18_DW4P2OaDJKg.jpg" width="1080" height="1440" loading="lazy" decoding="async" alt="Custom skull tattoo with ornamental work" />
+      <figcaption class="cap">DW4P2OaDJKg &nbsp;·&nbsp; Black &amp; Grey</figcaption>
+    </figure>
+    <figure class="gallery__tile" data-cats="fineline">
+      <img src="images/01-hero-picks/40_DXKHeLDjOHJ.jpg" width="1080" height="1440" loading="lazy" decoding="async" alt="Delicate fine-line back tattoo" />
+      <figcaption class="cap">DXKHeLDjOHJ &nbsp;·&nbsp; Fine Line</figcaption>
+    </figure>
+    <figure class="gallery__tile" data-cats="bg">
+      <img src="images/large-scale-back/24_DWwgsTEDK4N.jpg" width="1080" height="1440" loading="lazy" decoding="async" alt="Large-scale custom back tattoo, in progress" />
+      <figcaption class="cap">DWwgsTEDK4N &nbsp;·&nbsp; Large-scale Back</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ═════════ 6. FLASH ═════════ -->
+<div class="flash-section" id="flash">
+<section aria-label="Available flash">
+  <div class="section-head">
+    <div class="section-head__num">№ 06 — Available Flash</div>
+    <h2 class="section-head__title">Flash.<br>Pick one. Wear it.</h2>
+    <div class="section-head__kicker sc sc--dim">Pre-drawn pieces with set prices. DM to claim — first come, first inked.</div>
+  </div>
+
+  <div class="flash">
+    <article class="flash__tile">
+      <div class="flash__img"><img src="images/flash-designs/31_DWR6jWlghWX.jpg" width="540" height="960" loading="lazy" decoding="async" alt="Skeleton flash design" /></div>
+      <div class="flash__meta">
+        <div class="flash__label">Trad dagger<br>&amp; rose</div>
+        <div class="flash__price">£80</div>
+      </div>
+      <a class="flash__claim" href="https://www.instagram.com/freakoruniquetattoo/" target="_blank" rel="noopener"><span><strong>DM to claim</strong></span><span>→</span></a>
+    </article>
+
+    <article class="flash__tile">
+      <div class="flash__img"><img src="images/flash-designs/04_DYKms_oiyKp.jpg" width="640" height="1136" loading="lazy" decoding="async" alt="Flash design set" /></div>
+      <div class="flash__meta">
+        <div class="flash__label">Ornamental<br>dotwork</div>
+        <div class="flash__price">£60</div>
+      </div>
+      <a class="flash__claim" href="https://www.instagram.com/freakoruniquetattoo/" target="_blank" rel="noopener"><span><strong>DM to claim</strong></span><span>→</span></a>
+    </article>
+
+    <article class="flash__tile">
+      <div class="flash__img"><img src="images/flash-designs/15_DXZs4feghto.jpg" width="720" height="960" loading="lazy" decoding="async" alt="Colour tiger flash design" /></div>
+      <div class="flash__meta">
+        <div class="flash__label">Colour<br>tiger</div>
+        <div class="flash__price">£100+</div>
+      </div>
+      <a class="flash__claim" href="https://www.instagram.com/freakoruniquetattoo/" target="_blank" rel="noopener"><span><strong>DM to claim</strong></span><span>→</span></a>
+    </article>
+
+    <article class="flash__tile">
+      <div class="flash__img"><img src="images/flash-designs/32_DWg9za6Aocv.jpg" width="540" height="960" loading="lazy" decoding="async" alt="Bold floral flash design" /></div>
+      <div class="flash__meta">
+        <div class="flash__label">Dragon<br>&amp; blossom</div>
+        <div class="flash__price tbd">Price TBD</div>
+      </div>
+      <a class="flash__claim" href="https://www.instagram.com/freakoruniquetattoo/" target="_blank" rel="noopener"><span><strong>DM to enquire</strong></span><span>→</span></a>
+    </article>
+
+    <article class="flash__tile">
+      <div class="flash__img"><img src="images/flash-designs/07_DX9HF5eAtGg.jpg" width="1080" height="1080" loading="lazy" decoding="async" alt="Traditional dagger flash design" /></div>
+      <div class="flash__meta">
+        <div class="flash__label">Ornate sun</div>
+        <div class="flash__price tbd">Price TBD</div>
+      </div>
+      <a class="flash__claim" href="https://www.instagram.com/freakoruniquetattoo/" target="_blank" rel="noopener"><span><strong>DM to enquire</strong></span><span>→</span></a>
+    </article>
+
+    <article class="flash__tile">
+      <div class="flash__img"><img src="images/flash-designs/10_DYNKUAVC_pT.jpg" width="640" height="1136" loading="lazy" decoding="async" alt="Flash design — dragon" /></div>
+      <div class="flash__meta">
+        <div class="flash__label">Dancing<br>skeletons</div>
+        <div class="flash__price tbd">Price TBD</div>
+      </div>
+      <a class="flash__claim" href="https://www.instagram.com/freakoruniquetattoo/" target="_blank" rel="noopener"><span><strong>DM to enquire</strong></span><span>→</span></a>
+    </article>
+
+    <article class="flash__tile">
+      <div class="flash__img"><img src="images/flash-designs/33_DV_p3BzgunA.jpg" width="1080" height="1080" loading="lazy" decoding="async" alt="Ornamental flash design" /></div>
+      <div class="flash__meta">
+        <div class="flash__label">Botanical<br>stem</div>
+        <div class="flash__price tbd">Price TBD</div>
+      </div>
+      <a class="flash__claim" href="https://www.instagram.com/freakoruniquetattoo/" target="_blank" rel="noopener"><span><strong>DM to enquire</strong></span><span>→</span></a>
+    </article>
+  </div>
+</section>
+</div>
+
+<!-- ═════════ 7. BOOKING ═════════ -->
+<section aria-label="Booking" id="book">
+  <div class="section-head">
+    <div class="section-head__num">№ 07 — Booking</div>
+    <h2 class="section-head__title">Three doors<span class="or">. </span><br>Walk through any.</h2>
+    <div class="section-head__kicker sc sc--dim">Three ways in — the studio answers whichever you use.</div>
+  </div>
+
+  <div class="booking">
+    <div>
+      <p class="booking__copy">
+        DM us on Instagram, drop an email, or pick up the phone. Tell us the <em>idea</em>, size, placement, and a reference if you have one — we'll take it from there.
+      </p>
+
+      <div class="booking__accent">
+        <img src="images/script-lettering/35_DWLyNvPjJWA.jpg" width="1080" height="1080" loading="lazy" decoding="async" alt="Script lettering tattoo, neck placement" />
+        <p>"Bring the words too. Lettering, names, lines from songs — we do those properly."</p>
+      </div>
+    </div>
+
+    <div class="booking__ctas">
+      <a class="cta" href="https://www.instagram.com/freakoruniquetattoo/" target="_blank" rel="noopener">
+        <div>
+          <div class="cta__label">DM on Instagram</div>
+          <span class="cta__sub">@freakoruniquetattoo</span>
+        </div>
+        <span class="cta__arrow">→</span>
+      </a>
+      <a class="cta" href="mailto:freakoruniquestudio@gmail.com">
+        <div>
+          <div class="cta__label">Email us</div>
+          <span class="cta__sub">freakoruniquestudio@gmail.com</span>
+        </div>
+        <span class="cta__arrow">→</span>
+      </a>
+      <a class="cta" href="tel:+441173290146">
+        <div>
+          <div class="cta__label">Call 0117 329 0146</div>
+          <span class="cta__sub">Studio line · Bristol</span>
+        </div>
+        <span class="cta__arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ 8. AFTERCARE ═════════ -->
+<section aria-label="Aftercare" id="aftercare">
+  <div class="section-head">
+    <div class="section-head__num">№ 08 — Aftercare</div>
+    <h2 class="section-head__title">Looking after it.</h2>
+    <div class="section-head__kicker sc sc--dim">The short version, in five stages.</div>
+  </div>
+
+  <div class="accordion" id="accordion">
+
+    <div class="acc">
+      <button class="acc__btn" aria-expanded="false">
+        <span class="acc__num">01</span>
+        <span class="acc__title">First 24 hours</span>
+        <span class="acc__icon">+</span>
+      </button>
+      <div class="acc__body"><div class="acc__bodyinner">
+        <!-- TODO confirm with studio -->
+        <p>Leave the wrap on for 2–4 hours, or as instructed by your artist on the day. When you take it off, wash gently with lukewarm water and a fragrance-free soap. Pat dry — don't rub — then leave the skin to breathe for the rest of the evening.</p>
+        <p>Avoid alcohol, the gym, and anything that's going to make you sweat into a fresh wound. No baths, no swimming, no sun.</p>
+      </div></div>
+    </div>
+
+    <div class="acc">
+      <button class="acc__btn" aria-expanded="false">
+        <span class="acc__num">02</span>
+        <span class="acc__title">Week one</span>
+        <span class="acc__icon">+</span>
+      </button>
+      <div class="acc__body"><div class="acc__bodyinner">
+        <!-- TODO confirm with studio -->
+        <p>Wash 2–3 times a day with the same fragrance-free soap. Apply a thin layer of unscented healing balm or moisturiser whenever it feels tight — too much will smother it.</p>
+        <p>Expect mild itching, scabbing, and some colour loss as the skin sheds. This is normal. Don't pick, don't scratch, don't peel.</p>
+      </div></div>
+    </div>
+
+    <div class="acc">
+      <button class="acc__btn" aria-expanded="false">
+        <span class="acc__num">03</span>
+        <span class="acc__title">Healing fully</span>
+        <span class="acc__icon">+</span>
+      </button>
+      <div class="acc__body"><div class="acc__bodyinner">
+        <!-- TODO confirm with studio -->
+        <p>Surface healing takes around 2–3 weeks. Deeper healing — where the ink settles and the skin fully knits back — runs closer to 6–8 weeks. Keep it moisturised, keep it out of direct sun, and SPF 50 it for life once healed.</p>
+      </div></div>
+    </div>
+
+    <div class="acc">
+      <button class="acc__btn" aria-expanded="false">
+        <span class="acc__num">04</span>
+        <span class="acc__title">When to worry</span>
+        <span class="acc__icon">+</span>
+      </button>
+      <div class="acc__body"><div class="acc__bodyinner">
+        <!-- TODO confirm with studio -->
+        <p>Some redness and warmth in the first day or two is normal. Get in touch — or see a GP — if you see spreading redness, yellow/green discharge, fever, or pain that's getting worse instead of better after the first 48 hours.</p>
+        <p>If in doubt, send us a photo. We'd rather take a look than have you wait it out.</p>
+      </div></div>
+    </div>
+
+    <div class="acc">
+      <button class="acc__btn" aria-expanded="false">
+        <span class="acc__num">05</span>
+        <span class="acc__title">Common questions</span>
+        <span class="acc__icon">+</span>
+      </button>
+      <div class="acc__body"><div class="acc__bodyinner">
+        <!-- TODO confirm with studio -->
+        <p><strong>Can I shower?</strong> Yes — quick, lukewarm, no direct stream on the tattoo. No long soaks until it's fully healed.</p>
+        <p><strong>When can I swim?</strong> No pools, sea, or hot tubs for at least 3 weeks.</p>
+        <p><strong>Touch-ups?</strong> Ask your artist — touch-up policy varies by piece. Send us a photo at the 4-week mark and we'll take a look.</p>
+      </div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═════════ 9. FIND US ═════════ -->
+<section aria-label="Find us" id="find">
+  <div class="section-head">
+    <div class="section-head__num">№ 09 — Find Us</div>
+    <h2 class="section-head__title">Downend, Bristol.</h2>
+    <div class="section-head__kicker sc sc--dim">Just off the A4174 ring road.</div>
+  </div>
+
+  <div class="find">
+    <figure class="map" aria-label="Map placeholder">
+      <div class="map__pin">
+        <span class="pin-dot"></span>
+        <span class="pin-label sc">FREAK <span class="or" style="font-size:0.95em;">or</span> UNIQUE</span>
+      </div>
+      <figcaption class="map__label sc">[ MAP — TODO embed ]</figcaption>
+    </figure>
+
+    <div class="find__info">
+      <h3 class="find__addr">83 Quakers Road<br>Downend<br>Bristol <span class="or">·</span> BS16 6NH</h3>
+
+      <table class="hours">
+        <thead>
+          <tr><th>Hours</th><th style="text-align:right;">Hours</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Monday</td><td>— <!-- TODO confirm --></td></tr>
+          <tr><td>Tuesday</td><td>— <!-- TODO confirm --></td></tr>
+          <tr><td>Wednesday</td><td>— <!-- TODO confirm --></td></tr>
+          <tr><td>Thursday</td><td>— <!-- TODO confirm --></td></tr>
+          <tr><td>Friday</td><td>— <!-- TODO confirm --></td></tr>
+          <tr><td>Saturday</td><td>— <!-- TODO confirm --></td></tr>
+          <tr><td>Sunday</td><td>— <!-- TODO confirm --></td></tr>
+        </tbody>
+      </table>
+
+      <p class="parking">Free on-street parking on Quakers Road. Bus routes within walking distance.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═════════ FOOTER ═════════ -->
+<footer>
+  <div class="foot">
+    <div class="foot__brand">
+      <div class="wordmark"><span>Freak</span><span class="or">or</span><span>Unique</span></div>
+      <p>Custom-led, anti-corporate. Walk-ins welcome — same as it's always been.</p>
+    </div>
+    <div class="foot__contact">
+      <a href="https://www.instagram.com/freakoruniquetattoo/" target="_blank" rel="noopener">@freakoruniquetattoo</a>
+      <a href="mailto:freakoruniquestudio@gmail.com">freakoruniquestudio@gmail.com</a>
+      <a href="tel:+441173290146">0117 329 0146</a>
+      <span style="color:var(--bone-dim);">83 Quakers Road, Downend, Bristol BS16 6NH</span>
+    </div>
+  </div>
+  <div class="foot__bottom">
+    <span>© Freak <span class="or" style="font-size:0.95em;">or</span> Unique Tattoo Studio</span>
+    <span>Bristol · 2026</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // ───── mobile nav ─────
+  var nav = document.getElementById('nav');
+  var burger = document.getElementById('burger');
+  burger.addEventListener('click', function(){
+    var open = nav.classList.toggle('open');
+    document.body.classList.toggle('menu-open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  // close menu after tapping a link
+  document.querySelectorAll('#navLinks a, .btn-book').forEach(function(a){
+    a.addEventListener('click', function(){
+      nav.classList.remove('open');
+      document.body.classList.remove('menu-open');
+      burger.setAttribute('aria-expanded','false');
+    });
+  });
+
+  // ───── gallery filters ─────
+  var chips = document.querySelectorAll('.chip');
+  var tiles = document.querySelectorAll('#galleryGrid .gallery__tile');
+  chips.forEach(function(chip){
+    chip.addEventListener('click', function(){
+      chips.forEach(function(c){ c.classList.remove('active'); });
+      chip.classList.add('active');
+      var f = chip.dataset.filter;
+      tiles.forEach(function(t){
+        if(f === 'all' || (t.dataset.cats || '').split(' ').indexOf(f) !== -1){
+          t.classList.remove('is-hidden');
+        } else {
+          t.classList.add('is-hidden');
+        }
+      });
+    });
+  });
+
+  // ───── accordion ─────
+  document.querySelectorAll('#accordion .acc').forEach(function(acc){
+    var btn = acc.querySelector('.acc__btn');
+    var body = acc.querySelector('.acc__body');
+    btn.addEventListener('click', function(){
+      var open = acc.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if(open){
+        body.style.maxHeight = body.scrollHeight + 'px';
+      } else {
+        body.style.maxHeight = '0px';
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
