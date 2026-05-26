@@ -1004,9 +1004,9 @@ footer{
   .nav.open .nav__links{ display:flex; }
 
   /* ════════ CINEMATIC SECTION-HEAD PANELS ════════ */
-  /* Each section opens with a 70dvh photo poster. Title overlaid bottom-centre. */
-  main > section:not(.hero) > .section-head,
-  .flash-section > section > .section-head{
+  /* Story sections open with a full-bleed photo poster.
+     Gallery + Flash are browse-first — they get a tight inline header instead. */
+  main > section:not(.hero):not(#gallery) > .section-head{
     position:relative;
     min-height:72dvh;
     margin:0; padding:0;
@@ -1015,7 +1015,7 @@ footer{
     overflow:hidden;
     isolation:isolate;
   }
-  .section-head .bg-img{
+  main > section:not(.hero):not(#gallery) > .section-head .bg-img{
     display:block;
     position:absolute; inset:0;
     width:100%; height:100%;
@@ -1024,13 +1024,13 @@ footer{
     z-index:-2;
     filter:contrast(1.05) saturate(0.82) brightness(0.72);
   }
-  .section-head::before{
+  main > section:not(.hero):not(#gallery) > .section-head::before{
     content:""; position:absolute; inset:0; z-index:-1;
     background:
       linear-gradient(to top, rgba(10,10,10,.95) 0%, rgba(10,10,10,.45) 32%, rgba(10,10,10,0) 62%),
       linear-gradient(to bottom, rgba(10,10,10,.4) 0%, rgba(10,10,10,0) 30%);
   }
-  .section-head__title{
+  main > section:not(.hero):not(#gallery) > .section-head .section-head__title{
     color:var(--bone);
     font-size:clamp(48px, 13vw, 88px);
     line-height:0.92;
@@ -1040,10 +1040,34 @@ footer{
     padding:0 var(--pad) 56px;
     margin:0;
   }
-  .section-head__title .or{ font-size:0.94em; }
-  /* booking title — its trailing red period needs the line break removed visually */
+  main > section:not(.hero):not(#gallery) > .section-head .section-head__title .or{ font-size:0.94em; }
   #book .section-head__title br{ display:none; }
   #book .section-head__title{ font-size:clamp(40px, 11.5vw, 76px); }
+
+  /* ── browse sections: tight inline header, no poster ── */
+  #gallery > .section-head,
+  .flash-section > section > .section-head{
+    min-height:0;
+    margin:0;
+    padding:56px var(--pad) 18px;
+    display:block;
+    border-bottom:0;
+    text-align:left;
+    background:var(--ink);
+  }
+  #gallery > .section-head .bg-img,
+  .flash-section > section > .section-head .bg-img{ display:none; }
+  #gallery > .section-head .section-head__title,
+  .flash-section > section > .section-head .section-head__title{
+    color:var(--bone);
+    font-size:clamp(36px, 9vw, 56px);
+    line-height:0.95;
+    letter-spacing:-0.035em;
+    text-shadow:none;
+    padding:0;
+    margin:0;
+    text-align:left;
+  }
 
   /* drop the featured strip (duplicates hero + gallery) */
   #featured{ display:none; }
@@ -1094,19 +1118,15 @@ footer{
   .artist__ig span:first-child{ display:none; }
   .artist__ig .arrow{ font-size:20px; }
 
-  /* ════════ GALLERY — chips + grid below poster ════════ */
+  /* ════════ GALLERY — title → chips → grid, tight ════════ */
   #gallery{ padding:0; }
   #gallery > .filters{
     margin:0;
-    padding:20px var(--pad) 18px;
+    padding:8px var(--pad) 12px;
     flex-wrap:nowrap; overflow-x:auto;
     scrollbar-width:none;
     -webkit-overflow-scrolling:touch;
     gap:8px;
-    background:var(--ink);
-    position:sticky;
-    top:0; z-index:50;
-    border-bottom:1px solid var(--rule);
   }
   #gallery > .filters::-webkit-scrollbar{ display:none; }
   .chip{
@@ -1118,7 +1138,7 @@ footer{
   }
   #gallery > .gallery{
     column-count:2; column-gap:6px;
-    padding:6px;
+    padding:0 6px 56px;
   }
   .gallery__tile{ margin-bottom:6px; }
 
