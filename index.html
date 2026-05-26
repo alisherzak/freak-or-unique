@@ -875,16 +875,37 @@ footer{
   .section-head__kicker{ text-align:left; justify-self:start; }
 }
 
-@media (max-width: 760px){
-  /* ── kill desktop scaffolding that clutters small screens ── */
-  .hero__ticks, .hero__rail, .hero__star, .hero__corner, .hero__imgcap{ display:none !important; }
+/* default — backdrop images and mobile-only links hidden on desktop */
+.bg-img{ display:none; }
+.find__maps{ display:none; }
 
-  /* ── lock-screen wallpaper hero ── */
+/* ════════════════════════════════════════════════════════════
+   CINEMATIC MOBILE — every section opens with a full-bleed
+   photo "poster", text minimal, scroll past the photo
+   into the substance of the section.
+   Desktop above 760px stays untouched.
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 760px){
+
+  /* ── strip ALL editorial chrome on mobile ── */
+  .hero__ticks, .hero__rail, .hero__star, .hero__corner, .hero__imgcap,
+  .hero__eyebrow, .hero__meta,
+  .section-head__num, .section-head__kicker,
+  .manifesto__image,
+  .booking__copy, .booking__accent,
+  .hours, .parking,
+  .gallery__tile .cap,
+  .foot__brand p, .strip__tile .cap{ display:none !important; }
+
+  /* ── kill desktop scaffolding affordances ── */
+  section{ padding:0; margin:0; max-width:none; }
+  .section-head{ margin:0; padding:0; border-bottom:0; display:block; }
+
+  /* ════════ HERO — lock-screen wallpaper, almost no text ════════ */
   .hero{
     position:relative;
     min-height:100dvh;
-    padding:0;
-    margin:0;
+    padding:0; margin:0;
     max-width:none;
     display:block;
     overflow:hidden;
@@ -892,81 +913,77 @@ footer{
   .hero__image{
     position:absolute; inset:0;
     grid-column:auto; grid-row:auto;
-    z-index:0;
-    display:block;
+    z-index:0; display:block;
   }
   .hero__image img{
     width:100%; height:100%;
     max-height:none;
     object-fit:cover;
-    object-position:50% 25%;
-    filter:contrast(1.06) saturate(0.92) brightness(0.92);
+    object-position:50% 22%;
+    filter:contrast(1.05) saturate(0.88) brightness(0.78);
   }
-  /* two-stop legibility scrim */
   .hero::before{
-    content:"";
-    position:absolute; inset:0;
-    z-index:1; pointer-events:none;
+    content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
     background:
-      linear-gradient(to bottom, rgba(10,10,10,.78) 0%, rgba(10,10,10,.35) 14%, rgba(10,10,10,0) 30%),
-      linear-gradient(to top,    rgba(10,10,10,.94) 0%, rgba(10,10,10,.55) 30%, rgba(10,10,10,0) 62%);
+      linear-gradient(to bottom, rgba(10,10,10,.65) 0%, rgba(10,10,10,0) 22%),
+      linear-gradient(to top,    rgba(10,10,10,.92) 0%, rgba(10,10,10,.35) 36%, rgba(10,10,10,0) 65%);
   }
-  /* type block anchored to bottom safe area */
   .hero__type{
     position:absolute;
-    left:var(--pad); right:var(--pad);
-    bottom:calc(72px + env(safe-area-inset-bottom));
+    left:0; right:0;
+    bottom:calc(56px + env(safe-area-inset-bottom));
+    padding:0 var(--pad);
     grid-column:auto; grid-row:auto;
     z-index:2;
     align-self:auto;
+    text-align:center;
   }
-  .hero__eyebrow{ margin-bottom:18px; gap:10px; }
-  .hero__eyebrow .rule{ flex:0 0 28px; }
   .hero__headline{
-    font-size:clamp(64px, 19vw, 124px);
-    line-height:0.88;
-    letter-spacing:-0.04em;
+    font-size:clamp(72px, 21vw, 132px);
+    line-height:0.86;
+    letter-spacing:-0.045em;
     color:var(--bone);
-    text-shadow:0 2px 24px rgba(0,0,0,0.45);
+    text-shadow:0 2px 28px rgba(0,0,0,0.55);
   }
-  .hero__headline .line--or::before{ width:clamp(28px, 10vw, 64px); opacity:0.85; }
+  .hero__headline .line--or{ justify-content:center; padding-left:0; gap:0.32em; }
+  .hero__headline .line--or::before{ display:none; }
   .hero__sub{
-    margin:18px 0 14px;
-    font-size:16px;
+    margin:22px auto 0;
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:400;
+    font-size:17px;
     color:var(--bone);
-    max-width:30ch;
-    text-shadow:0 1px 12px rgba(0,0,0,0.5);
-  }
-  .hero__meta{
-    gap:10px 14px;
-    font-size:11px;
-    color:var(--bone-dim);
-  }
-  /* scroll cue */
-  .hero::after{
-    content:"↓";
-    position:absolute;
-    left:50%;
-    bottom:calc(20px + env(safe-area-inset-bottom));
-    transform:translateX(-50%);
-    z-index:2;
-    color:var(--bone-dim);
-    font-size:18px;
-    line-height:1;
-    animation:scrollCue 2.2s ease-in-out infinite;
-    pointer-events:none;
-  }
-  @keyframes scrollCue{
-    0%,100%{ opacity:0.35; transform:translate(-50%, 0); }
-    50%    { opacity:0.95; transform:translate(-50%, 6px); }
+    max-width:none;
+    text-shadow:0 1px 12px rgba(0,0,0,0.6);
+    letter-spacing:0.01em;
   }
 
-  /* ── nav: safe-area aware, slimmer ── */
-  header.nav{ padding-top:env(safe-area-inset-top); }
-  .nav__inner{ padding:12px var(--pad); gap:12px; }
-  .wordmark{ font-size:17px; }
+  /* tiny scroll cue */
+  .hero::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:calc(22px + env(safe-area-inset-bottom));
+    transform:translateX(-50%);
+    z-index:2;
+    width:1px; height:32px;
+    background:linear-gradient(to bottom, rgba(242,239,233,0) 0%, var(--bone-dim) 100%);
+    animation:cueFade 2.6s ease-in-out infinite;
+    pointer-events:none;
+  }
+  @keyframes cueFade{
+    0%,100%{ opacity:0.25; transform:translate(-50%, -3px); }
+    50%    { opacity:0.85; transform:translate(-50%,  3px); }
+  }
+
+  /* ════════ NAV — slimmer, safe-area ════════ */
+  header.nav{ padding-top:env(safe-area-inset-top); background:transparent; border-bottom:0; }
+  .nav.scrolled{ background:rgba(10,10,10,0.78); border-bottom:1px solid var(--rule); }
+  .nav__inner{ padding:14px var(--pad); gap:12px; }
+  .wordmark{ font-size:16px; }
   .nav__burger{ display:flex; order:3; width:44px; height:44px; }
-  .btn-book{ padding:11px 16px; font-size:11px; min-height:44px; display:inline-flex; align-items:center; }
+  .btn-book{ padding:11px 18px; font-size:11px; min-height:44px; display:inline-flex; align-items:center; }
   .nav__links{
     display:none;
     position:absolute; top:100%; left:0; right:0;
@@ -974,115 +991,222 @@ footer{
     backdrop-filter:blur(20px);
     -webkit-backdrop-filter:blur(20px);
     border-bottom:1px solid var(--rule);
-    flex-direction:column;
-    align-items:stretch;
+    flex-direction:column; align-items:stretch;
     padding:16px var(--pad) calc(24px + env(safe-area-inset-bottom));
     gap:4px;
   }
   .nav__links a{
-    padding:16px 4px;
+    padding:18px 4px;
     font-size:14px;
     border-bottom:1px solid var(--rule);
   }
   .nav__links li:last-child a{ border-bottom:0; }
   .nav.open .nav__links{ display:flex; }
 
-  /* ── section rhythm ── */
-  section{ padding:56px var(--pad); }
-  .section-head{ margin-bottom:32px; gap:14px; padding-bottom:18px; }
-  .section-head__title{ font-size:clamp(36px, 9vw, 56px); }
+  /* ════════ CINEMATIC SECTION-HEAD PANELS ════════ */
+  /* Each section opens with a 70dvh photo poster. Title overlaid bottom-centre. */
+  main > section:not(.hero) > .section-head,
+  .flash-section > section > .section-head{
+    position:relative;
+    min-height:72dvh;
+    margin:0; padding:0;
+    border-bottom:0;
+    display:flex; align-items:flex-end; justify-content:center;
+    overflow:hidden;
+    isolation:isolate;
+  }
+  .section-head .bg-img{
+    display:block;
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:cover;
+    object-position:center 30%;
+    z-index:-2;
+    filter:contrast(1.05) saturate(0.82) brightness(0.72);
+  }
+  .section-head::before{
+    content:""; position:absolute; inset:0; z-index:-1;
+    background:
+      linear-gradient(to top, rgba(10,10,10,.95) 0%, rgba(10,10,10,.45) 32%, rgba(10,10,10,0) 62%),
+      linear-gradient(to bottom, rgba(10,10,10,.4) 0%, rgba(10,10,10,0) 30%);
+  }
+  .section-head__title{
+    color:var(--bone);
+    font-size:clamp(48px, 13vw, 88px);
+    line-height:0.92;
+    letter-spacing:-0.038em;
+    text-align:center;
+    text-shadow:0 2px 22px rgba(0,0,0,0.55);
+    padding:0 var(--pad) 56px;
+    margin:0;
+  }
+  .section-head__title .or{ font-size:0.94em; }
+  /* booking title — its trailing red period needs the line break removed visually */
+  #book .section-head__title br{ display:none; }
+  #book .section-head__title{ font-size:clamp(40px, 11.5vw, 76px); }
 
-  /* ── drop the featured strip on mobile (duplicates hero + gallery role) ── */
+  /* drop the featured strip (duplicates hero + gallery) */
   #featured{ display:none; }
 
-  /* ── manifesto: 1-col, image smaller ── */
-  .manifesto{ grid-template-columns:1fr; gap:32px; }
-  .manifesto__image{ max-width:70%; transform:none; }
-  .manifesto__text{ font-size:clamp(26px, 6.5vw, 40px); }
+  /* ════════ MANIFESTO — single big quote ════════ */
+  .manifesto{
+    grid-template-columns:1fr;
+    padding:64px var(--pad) 72px;
+    gap:0;
+  }
+  .manifesto__text{
+    font-size:clamp(28px, 7.5vw, 44px);
+    line-height:1.15;
+    text-align:left;
+    max-width:none;
+  }
 
-  /* ── artists: collapse cards to a list ── */
-  .artists{ grid-template-columns:1fr; gap:0; }
+  /* ════════ ARTISTS — clean list under photo poster ════════ */
+  .artists{
+    grid-template-columns:1fr;
+    gap:0;
+    padding:8px var(--pad) 64px;
+  }
   .artist{
-    flex-direction:row;
-    align-items:center;
-    gap:16px;
-    min-height:64px;
-    padding:18px 0;
+    flex-direction:row; align-items:center;
+    gap:18px;
+    min-height:72px;
+    padding:22px 0;
     border-bottom:1px solid var(--rule);
   }
   .artist:last-child{ border-bottom:0; }
   .artist__portrait{ display:none; }
-  .artist__name{ font-size:26px; margin:0; flex:0 0 auto; min-width:96px; }
-  .artist__style{ flex:1; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--bone-faint); }
+  .artist__name{ font-size:26px; margin:0; flex:0 0 auto; min-width:88px; }
+  .artist__style{
+    flex:1;
+    font-size:10px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--bone-faint);
+    margin:0;
+  }
   .artist__ig{
-    border-top:0;
-    padding-top:0;
-    margin-top:0;
+    border-top:0; padding-top:0; margin-top:0;
     flex:0 0 auto;
-    min-width:44px;
-    min-height:44px;
-    justify-content:flex-end;
-    gap:6px;
+    min-width:44px; min-height:44px;
+    justify-content:flex-end; gap:6px;
   }
   .artist__ig span:first-child{ display:none; }
   .artist__ig .arrow{ font-size:20px; }
 
-  /* ── gallery: horizontally-scrollable chips ── */
-  .filters{
-    flex-wrap:nowrap;
-    overflow-x:auto;
+  /* ════════ GALLERY — chips + grid below poster ════════ */
+  #gallery{ padding:0; }
+  #gallery > .filters{
+    margin:0;
+    padding:20px var(--pad) 18px;
+    flex-wrap:nowrap; overflow-x:auto;
     scrollbar-width:none;
     -webkit-overflow-scrolling:touch;
-    margin:-12px calc(var(--pad) * -1) 28px;
-    padding:4px var(--pad) 12px;
     gap:8px;
+    background:var(--ink);
+    position:sticky;
+    top:0; z-index:50;
+    border-bottom:1px solid var(--rule);
   }
-  .filters::-webkit-scrollbar{ display:none; }
-  .chip{ flex:0 0 auto; padding:10px 16px; font-size:12px; min-height:40px; }
-  .gallery{ column-count:2; column-gap:8px; }
-  .gallery__tile{ margin-bottom:8px; }
-  .gallery__tile .cap{ font-size:9px; letter-spacing:0.16em; }
+  #gallery > .filters::-webkit-scrollbar{ display:none; }
+  .chip{
+    flex:0 0 auto;
+    padding:10px 18px;
+    font-size:11px;
+    min-height:40px;
+    border-radius:999px;
+  }
+  #gallery > .gallery{
+    column-count:2; column-gap:6px;
+    padding:6px;
+  }
+  .gallery__tile{ margin-bottom:6px; }
 
-  /* ── flash: 2-col by default, 1-col on tiny ── */
-  .flash{ grid-template-columns:repeat(2, 1fr); gap:24px 12px; }
-  .flash__label{ font-size:17px; }
+  /* ════════ FLASH — grid below poster ════════ */
+  .flash-section{ background:#070707; }
+  .flash-section > section{ padding:0; }
+  .flash{
+    grid-template-columns:repeat(2, 1fr);
+    gap:32px 12px;
+    padding:48px var(--pad) 72px;
+  }
+  .flash__label{ font-size:16px; line-height:1.15; }
   .flash__price{ font-size:18px; }
+  .flash__claim{ font-size:10px; padding:10px 0 0; }
 
-  /* ── booking ── */
-  .booking{ grid-template-columns:1fr; gap:32px; }
-  .cta{ padding:22px 22px; min-height:64px; }
+  /* ════════ BOOKING — only the 3 CTAs, no body copy ════════ */
+  #book .booking{
+    display:block;
+    padding:48px var(--pad) 64px;
+  }
+  .booking__ctas{
+    display:flex; flex-direction:column;
+    gap:12px;
+  }
+  .cta{
+    padding:22px 22px;
+    min-height:72px;
+    background:#141311;
+    border:1px solid var(--rule);
+  }
   .cta__label{ font-size:20px; }
-  .booking__accent{ grid-template-columns:1fr; gap:18px; }
-  .booking__accent img{ width:160px; }
-  .booking__accent p{ font-size:18px; }
+  .cta__sub{ font-size:10px; letter-spacing:0.22em; }
+  .cta__arrow{ font-size:28px; }
 
-  /* ── aftercare ── */
-  .acc__btn{ padding:22px 0; font-size:22px; gap:16px; }
-  .acc__bodyinner{ padding:0 0 28px 0; font-size:15px; }
+  /* ════════ AFTERCARE — accordion under poster ════════ */
+  #aftercare > .accordion{
+    padding:8px var(--pad) 64px;
+    border-top:0;
+  }
+  .acc__btn{ padding:22px 0; font-size:21px; gap:14px; }
+  .acc__bodyinner{ padding:0 0 28px 0; font-size:15px; line-height:1.55; }
 
-  /* ── find us ── */
-  .find{ grid-template-columns:1fr; gap:32px; }
-  .map{ aspect-ratio:16/10; }
-  .find__addr{ font-size:clamp(22px, 5.6vw, 30px); }
-  .hours td{ padding:14px 0; }
+  /* ════════ FIND US — address + map only ════════ */
+  .find{
+    grid-template-columns:1fr;
+    gap:24px;
+    padding:48px var(--pad) 72px;
+  }
+  .map{ aspect-ratio:16/10; order:2; }
+  .find__info{ gap:18px; order:1; align-items:flex-start; }
+  .find__addr{ font-size:clamp(24px, 6.5vw, 34px); line-height:1.15; margin:0; }
 
-  /* ── footer ── */
-  .foot{ grid-template-columns:1fr; gap:24px; text-align:center; padding-bottom:32px; }
-  .foot__contact{ align-items:center; text-align:center; }
+  /* "Open in Maps" link replaces the missing hours table on mobile */
+  .find__maps{
+    display:inline-flex; align-items:center;
+    font-size:11px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--red);
+    padding:14px 0;
+    min-height:44px;
+    border-bottom:1px solid var(--rule);
+  }
+  .find__maps:hover{ color:var(--bone); }
+
+  /* ════════ FOOTER ════════ */
+  footer{ padding:48px var(--pad) calc(36px + env(safe-area-inset-bottom)); }
+  .foot{
+    grid-template-columns:1fr; gap:24px;
+    text-align:center;
+    padding-bottom:32px;
+  }
+  .foot__contact{ align-items:center; text-align:center; font-size:13px; }
   .foot__brand{ display:flex; flex-direction:column; align-items:center; }
-  .foot__brand .wordmark{ font-size:32px; justify-content:center; }
-  .foot__brand p{ text-align:center; max-width:30ch; }
-  .foot__bottom{ flex-direction:column; gap:10px; text-align:center; }
+  .foot__brand .wordmark{ font-size:30px; justify-content:center; }
+  .foot__bottom{ flex-direction:column; gap:8px; text-align:center; font-size:10px; }
 
-  /* ── make every tap fast ── */
+  /* zero out tap delays */
   a, button{ touch-action:manipulation; }
 }
 
-/* ── single-column flash on tiny screens ── */
+/* ── tiny phones: tighten further ── */
 @media (max-width: 420px){
-  .flash{ grid-template-columns:1fr; gap:28px; }
-  .flash__img{ aspect-ratio:4/5; }
-  .hero__headline{ font-size:clamp(58px, 18vw, 108px); }
+  .hero__headline{ font-size:clamp(64px, 20vw, 112px); }
+  .hero__sub{ font-size:16px; }
+  .section-head__title{ font-size:clamp(42px, 12vw, 72px); padding-bottom:48px; }
+  #gallery > .gallery{ column-count:2; column-gap:4px; padding:4px; }
+  .gallery__tile{ margin-bottom:4px; }
 }
 
 /* ── reduced-motion: kill grain + transitions ── */
@@ -1168,6 +1292,7 @@ body.menu-open{ overflow:hidden; }
 <!-- ═════════ 2. MANIFESTO ═════════ -->
 <section aria-label="Manifesto" id="manifesto">
   <div class="section-head">
+    <img class="bg-img" src="images/story-pieces/03_DYAVPxUgvxF.jpg" loading="lazy" decoding="async" aria-hidden="true" alt="" />
     <div class="section-head__num">№ 02 — Manifesto</div>
     <h2 class="section-head__title">No safe.<br>No generic.</h2>
     <div class="section-head__kicker sc sc--dim">The studio in one paragraph.</div>
@@ -1227,6 +1352,7 @@ body.menu-open{ overflow:hidden; }
 <!-- ═════════ 4. ARTISTS ═════════ -->
 <section aria-label="Artists" id="artists">
   <div class="section-head">
+    <img class="bg-img" src="images/01-hero-picks/21_DW_8sWbCMhh.jpg" loading="lazy" decoding="async" aria-hidden="true" alt="" />
     <div class="section-head__num">№ 04 — Artists</div>
     <h2 class="section-head__title">Four hands.<br>One floor.</h2>
     <div class="section-head__kicker sc sc--dim">Portraits coming soon — DM the studio to book by name.</div>
@@ -1274,6 +1400,7 @@ body.menu-open{ overflow:hidden; }
 <!-- ═════════ 5. GALLERY ═════════ -->
 <section aria-label="Gallery" id="gallery">
   <div class="section-head">
+    <img class="bg-img" src="images/mixed-portfolio/38_DWrkZrCjJTk.jpg" loading="lazy" decoding="async" aria-hidden="true" alt="" />
     <div class="section-head__num">№ 05 — Gallery</div>
     <h2 class="section-head__title">The full wall.</h2>
     <div class="section-head__kicker sc sc--dim">Filter by style. Tap for the IG short-code.</div>
@@ -1421,6 +1548,7 @@ body.menu-open{ overflow:hidden; }
 <div class="flash-section" id="flash">
 <section aria-label="Available flash">
   <div class="section-head">
+    <img class="bg-img" src="images/flash-designs/31_DWR6jWlghWX.jpg" loading="lazy" decoding="async" aria-hidden="true" alt="" />
     <div class="section-head__num">№ 06 — Available Flash</div>
     <h2 class="section-head__title">Flash.<br>Pick one. Wear it.</h2>
     <div class="section-head__kicker sc sc--dim">Pre-drawn pieces with set prices. DM to claim — first come, first inked.</div>
@@ -1496,6 +1624,7 @@ body.menu-open{ overflow:hidden; }
 <!-- ═════════ 7. BOOKING ═════════ -->
 <section aria-label="Booking" id="book">
   <div class="section-head">
+    <img class="bg-img" src="images/script-lettering/35_DWLyNvPjJWA.jpg" loading="lazy" decoding="async" aria-hidden="true" alt="" />
     <div class="section-head__num">№ 07 — Booking</div>
     <h2 class="section-head__title">Three doors<span class="or">. </span><br>Walk through any.</h2>
     <div class="section-head__kicker sc sc--dim">Three ways in — the studio answers whichever you use.</div>
@@ -1542,6 +1671,7 @@ body.menu-open{ overflow:hidden; }
 <!-- ═════════ 8. AFTERCARE ═════════ -->
 <section aria-label="Aftercare" id="aftercare">
   <div class="section-head">
+    <img class="bg-img" src="images/01-hero-picks/17_DXCmn60jACd.jpg" loading="lazy" decoding="async" aria-hidden="true" alt="" />
     <div class="section-head__num">№ 08 — Aftercare</div>
     <h2 class="section-head__title">Looking after it.</h2>
     <div class="section-head__kicker sc sc--dim">The short version, in five stages.</div>
@@ -1620,6 +1750,7 @@ body.menu-open{ overflow:hidden; }
 <!-- ═════════ 9. FIND US ═════════ -->
 <section aria-label="Find us" id="find">
   <div class="section-head">
+    <img class="bg-img" src="images/japanese/25_DWeELBnCH6O.jpg" loading="lazy" decoding="async" aria-hidden="true" alt="" />
     <div class="section-head__num">№ 09 — Find Us</div>
     <h2 class="section-head__title">Downend, Bristol.</h2>
     <div class="section-head__kicker sc sc--dim">Just off the A4174 ring road.</div>
@@ -1636,6 +1767,7 @@ body.menu-open{ overflow:hidden; }
 
     <div class="find__info">
       <h3 class="find__addr">83 Quakers Road<br>Downend<br>Bristol <span class="or">·</span> BS16 6NH</h3>
+      <a class="find__maps" href="https://www.google.com/maps/search/?api=1&query=83+Quakers+Road+Downend+Bristol+BS16+6NH" target="_blank" rel="noopener">Open in Maps →</a>
 
       <table class="hours">
         <thead>
@@ -1681,8 +1813,17 @@ body.menu-open{ overflow:hidden; }
 
 <script>
 (function(){
-  // ───── mobile nav ─────
+  // ───── nav scroll state (mobile: transparent over hero, solid after) ─────
   var nav = document.getElementById('nav');
+  var navThreshold = 80;
+  function syncNavState(){
+    if(window.scrollY > navThreshold) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  }
+  window.addEventListener('scroll', syncNavState, { passive: true });
+  syncNavState();
+
+  // ───── mobile nav menu ─────
   var burger = document.getElementById('burger');
   var navLinks = document.getElementById('navLinks');
   var lastFocus = null;
