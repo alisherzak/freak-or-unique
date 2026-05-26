@@ -18,8 +18,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,800;0,900;1,400;1,700;1,900&family=Inter:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,800;0,900;1,400;1,700;1,900&family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,800;0,900;1,400;1,700;1,900&family=Inter:wght@300;400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,800;0,900;1,400;1,700;1,900&family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
 
 <style>
 /* ───────── tokens ───────── */
@@ -888,7 +888,6 @@ footer{
 
   /* ── hidden on mobile ── */
   .hero__ticks, .hero__rail, .hero__star, .hero__corner,
-  .hero__image, .hero__imgcap,
   .strip__tile .cap, .gallery__tile .cap,
   .artist__style{ display:none !important; }
 
@@ -950,30 +949,88 @@ footer{
     margin:4px 0 0;
   }
 
-  /* ════════ HERO — typography only, no photo ════════ */
+  /* ════════ HERO — refined editorial: photo on top, Cormorant wordmark below ════════ */
   .hero{
-    display:block;
+    display:flex; flex-direction:column;
     min-height:auto;
-    padding:96px var(--pad) 40px;
+    padding:88px var(--pad) 44px;
+    gap:0;
     grid-template-columns:none; grid-template-rows:none;
+    align-items:stretch;
     max-width:var(--maxw);
   }
-  .hero__type{ grid-column:auto; grid-row:auto; align-self:auto; }
-  .hero__eyebrow{ margin-bottom:24px; gap:10px; flex-wrap:wrap; font-size:10px; }
+  /* photo first */
+  .hero__image{
+    order:-1;
+    display:flex; flex-direction:column;
+    grid-column:auto; grid-row:auto;
+    align-self:stretch;
+    justify-content:stretch;
+    margin:0 calc(var(--pad) * -1) 22px;
+  }
+  .hero__image img{
+    order:1;
+    width:100%;
+    aspect-ratio:4/5;
+    max-height:none;
+    object-fit:cover;
+    object-position:50% 22%;
+    filter:contrast(1.04) saturate(0.9);
+  }
+  .hero__imgcap{
+    order:2;
+    position:static !important;
+    top:auto !important; left:auto !important;
+    margin:14px var(--pad) 0;
+    font-size:10px;
+    letter-spacing:0.22em;
+    color:var(--bone-dim);
+  }
+
+  /* text below photo — flatten .hero__type so meta can sit at the very end */
+  .hero__type{ display:contents; }
+  .hero__eyebrow{
+    margin:8px 0 22px;
+    gap:10px;
+    font-size:10px;
+    flex-wrap:wrap;
+    letter-spacing:0.22em;
+  }
   .hero__eyebrow .rule{ flex:0 0 24px; }
+
+  /* refined Cormorant wordmark */
   .hero__headline{
-    font-size:clamp(64px, 18vw, 108px);
-    line-height:0.88;
-    letter-spacing:-0.045em;
+    font-family:'Cormorant Garamond', Georgia, serif;
+    font-weight:500;
+    font-size:clamp(72px, 21vw, 124px);
+    line-height:0.94;
+    letter-spacing:-0.018em;
+    color:var(--bone);
+    margin:0;
   }
-  .hero__headline .line--or::before{ width:clamp(28px, 8vw, 56px); }
+  .hero__headline .or{
+    font-family:'Cormorant Garamond', Georgia, serif;
+    font-weight:500;
+    font-style:italic;
+    color:var(--red);
+    letter-spacing:0;
+  }
+  .hero__headline .line--or{ padding-left:0; gap:0; align-items:baseline; }
+  .hero__headline .line--or::before{ display:none; }
+  .hero__headline .dot-end{ color:var(--red); }
+
   .hero__sub{
-    margin:28px 0 18px;
-    font-size:17px;
-    line-height:1.4;
-    max-width:32ch;
+    margin:22px 0 16px;
+    font-family:'Cormorant Garamond', Georgia, serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:22px;
+    line-height:1.32;
+    max-width:none;
+    color:var(--bone);
+    letter-spacing:0;
   }
-  .hero__meta{ gap:8px 14px; font-size:11px; }
+  .hero__meta{ gap:8px 14px; font-size:10px; letter-spacing:0.22em; }
 
   /* ════════ MANIFESTO ════════ */
   .manifesto{ grid-template-columns:1fr; gap:20px; }
@@ -1085,8 +1142,9 @@ footer{
 
 /* ── small phones: tighter ── */
 @media (max-width: 420px){
-  .hero{ padding:80px var(--pad) 32px; }
-  .hero__headline{ font-size:clamp(56px, 17vw, 88px); }
+  .hero{ padding:80px var(--pad) 36px; }
+  .hero__headline{ font-size:clamp(64px, 19vw, 100px); }
+  .hero__sub{ font-size:20px; }
   .section-head__title{ font-size:clamp(48px, 14vw, 80px); }
   section{ padding:32px var(--pad); }
   .gallery{ column-gap:4px; }
